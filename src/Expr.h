@@ -7,6 +7,8 @@
 
 #include "Token.h"
 
+#include <memory>
+
 template<typename T>
 struct Visitor;
 
@@ -20,12 +22,12 @@ struct Expr
 template<typename T>
 struct Binary : public Expr<T>
 {
-	Expr<T>* left;
+	std::unique_ptr<Expr<T>> left;
 	Token op;
-	Expr<T>* right;
+	std::unique_ptr<Expr<T>> right;
 	Binary(Expr<T>* _left, Token _op, Expr<T>* _right)
 		: left(_left)
-		, op(_op)
+		, op(std::move(_op))
 		, right(_right)
 	{
 	}
@@ -38,8 +40,8 @@ struct Binary : public Expr<T>
 template<typename T>
 struct Grouping : public Expr<T>
 {
-	Expr<T>* expression;
-	Grouping(Expr<T>* _expression)
+	std::unique_ptr<Expr<T>> expression;
+	explicit Grouping(Expr<T>* _expression)
 		: expression(_expression)
 	{
 	}
@@ -53,8 +55,8 @@ template<typename T>
 struct Literal : public Expr<T>
 {
 	Token::literal_t value;
-	Literal(Token::literal_t _value)
-		: value(_value)
+	explicit Literal(Token::literal_t _value)
+		: value(std::move(_value))
 	{
 	}
 	T accept(Visitor<T>* visitor)
@@ -67,7 +69,7 @@ template<typename T>
 struct Unary : public Expr<T>
 {
 	Token op;
-	Expr<T>* right;
+	std::unique_ptr<Expr<T>> right;
 	Unary(Token _op, Expr<T>* _right)
 		: op(_op)
 		, right(_right)

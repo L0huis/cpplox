@@ -13,12 +13,12 @@ std::string AstPrinter::print(Expr<std::string>* expr)
 
 std::string AstPrinter::visitBinaryExpr(Binary<std::string>* expr)
 {
-	return parenthesize(expr->op.lexeme, expr->left, expr->right);
+	return parenthesize(expr->op.lexeme, expr->left.get(), expr->right.get());
 }
 
 std::string AstPrinter::visitGroupingExpr(Grouping<std::string>* expr)
 {
-	return parenthesize("group", expr->expression);
+	return parenthesize("group", expr->expression.get());
 }
 
 std::string AstPrinter::visitLiteralExpr(Literal<std::string>* expr)
@@ -34,7 +34,7 @@ std::string AstPrinter::visitLiteralExpr(Literal<std::string>* expr)
 
 std::string AstPrinter::visitUnaryExpr(Unary<std::string>* expr)
 {
-	return parenthesize(expr->op.lexeme, expr->right);
+	return parenthesize(expr->op.lexeme, expr->right.get());
 }
 
 template<typename... Args>

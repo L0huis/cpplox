@@ -6,11 +6,12 @@
 int main(int argc, const char** argv)
 {
 	using S = std::string;
-	Expr<S>* expression = new Binary<S>(new Unary<S>(Token(TokenType::MINUS, "-", std::monostate(), 1), new Literal<S>(123.0)),
-								   Token(TokenType::STAR, "*", std::monostate(), 1), new Grouping<S>(new Literal<S>(45.67)));
+	std::unique_ptr<Expr<S>> expression(
+		new Binary<S>(new Unary<S>(Token(TokenType::MINUS, "-", std::monostate(), 1), new Literal<S>(123.0)),
+					  Token(TokenType::STAR, "*", std::monostate(), 1), new Grouping<S>(new Literal<S>(45.67))));
 
 	AstPrinter astp;
-	std::cout << astp.print(expression);
+	std::cout << astp.print(expression.get());
 
 	return 0;
 

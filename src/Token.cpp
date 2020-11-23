@@ -4,9 +4,9 @@
 
 #include "Token.h"
 
-Token::Token(TokenType _type, const std::string& _lexem, literal_t _literal, int _line)
+Token::Token(TokenType _type, const std::string& _lexeme, literal_t _literal, int _line)
 	: type(_type)
-	, lexem(_lexem)
+	, lexeme(_lexeme)
 	, literal(_literal)
 	, line(_line)
 {
@@ -14,11 +14,11 @@ Token::Token(TokenType _type, const std::string& _lexem, literal_t _literal, int
 
 std::ostream& operator<<(std::ostream& os, const Token& token)
 {
-	os << "type: " << token.type << " lexem: " << token.lexem;
+	os << "type: " << token.type << " lexeme: " << token.lexeme;
 	if (token.type == TokenType::NUMBER)
-		os << " literal: " << std::get<double>(token.literal);
+		os << " value: " << std::get<double>(token.literal);
 	else if (token.type == TokenType::STRING)
-		os << " literal: " << std::get<std::string>(token.literal);
+		os << " value: " << std::get<std::string>(token.literal);
 	os << " line: " << token.line;
 
 	return os;

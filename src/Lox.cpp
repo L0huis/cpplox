@@ -34,11 +34,15 @@ void runFile(const char* filename)
 void runPrompt()
 {
 	std::string line;
-	do {
+	while (true)
+	{
 		std::cout << "> ";
-		run(line);
-		hadError = false;
-	} while (std::getline(std::cin, line));
+		if (std::getline(std::cin, line)) { run(line); }
+		else
+		{
+			break;
+		}
+	}
 }
 
 void run(const std::string& source)
@@ -51,7 +55,7 @@ void run(const std::string& source)
 	if (hadError) return;
 
 	AstPrinter astp;
-	std::cout << astp.print(expression);
+	std::cout << astp.print(expression) << '\n';
 }
 
 void error(int line, const std::string& message)

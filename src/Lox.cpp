@@ -41,17 +41,31 @@ void runPrompt()
 	} while (std::getline(std::cin, line));
 }
 
-void run(std::string source)
+void run(const std::string& source)
 {
 	Scanner scanner(source);
 	std::vector<Token> tokens = scanner.scanTokens();
+	Parser parser(tokens);
+	auto* expression = parser.parse();
 
-	for (Token token : tokens) { std::cout << token << '\n'; }
+	if (hadError) return;
+
+	AstPrinter astp;
+	std::cout << astp.print(expression);
 }
 
-void error(int line, std::string message)
+void error(int line, const std::string& message)
 {
 	report(line, "", message);
+}
+
+void Lox::error(const Token& token, const std::string& message)
+{
+	if (token.type == TokenType::END_OF_FILE) { report(token.line, " at end", message); }
+	else
+	{
+		report(token.line, " at '" + token.lexeme + "'", message);
+	}
 }
 
 void report(int line, std::string where, std::string message)

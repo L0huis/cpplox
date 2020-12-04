@@ -7,6 +7,9 @@
 
 #include <string>
 #include "Scanner.h"
+#include "Parser.h"
+
+#include "AstPrinter.h"
 
 namespace Lox
 {
@@ -14,9 +17,10 @@ static bool hadError = false;
 
 void runFile(const char* filename);
 void runPrompt();
-void run(std::string source);
+void run(const std::string& source);
 
-void error(int line, std::string message);
+void error(int line, const std::string& message);
+void error(const Token& token, const std::string& message);
 void report(int line, std::string where, std::string message);
 }  // namespace Lox
 

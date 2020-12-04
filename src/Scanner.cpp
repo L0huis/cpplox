@@ -7,7 +7,7 @@
 #include <charconv>
 
 Scanner::Scanner(std::string _source)
-	: source(_source)
+	: source(std::move(_source))
 {
 }
 
@@ -19,7 +19,7 @@ std::vector<Token> Scanner::scanTokens()
 		scanToken();
 	}
 
-	tokens.emplace_back(TokenType::_EOF, "", std::monostate(), line);
+	tokens.emplace_back(TokenType::END_OF_FILE, "", std::monostate(), line);
 
 	return tokens;
 }

@@ -43,8 +43,8 @@ std::string AstPrinter::parenthesize(std::string name, Args... args)
 	std::stringstream ss;
 
 	ss << '(' << name;
-	(void)std::initializer_list<int> { [&, This = this](auto& arg) {
-		ss << ' ' << arg->accept(This);
+	(void)std::initializer_list<int> { [&](auto& arg) {
+		ss << ' ' << arg->accept(this);
 		return 0;
 	}(args)... };
 	ss << ')';

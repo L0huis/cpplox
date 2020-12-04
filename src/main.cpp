@@ -5,17 +5,6 @@
 
 int main(int argc, const char** argv)
 {
-	using S = std::string;
-	std::unique_ptr<Expr<S>> expression(
-		new Binary<S>(new Unary<S>(Token(TokenType::MINUS, "-", std::monostate(), 1), new Literal<S>(123.0)),
-					  Token(TokenType::STAR, "*", std::monostate(), 1), new Grouping<S>(new Literal<S>(45.67))));
-
-	AstPrinter astp;
-	std::cout << astp.print(expression.get());
-
-	return 0;
-
-#if 0
 	if (argc > 2)
 	{
 		std::cout << "Usage: cpplox [script]\n";
@@ -28,5 +17,4 @@ int main(int argc, const char** argv)
 	{
 		Lox::runPrompt();
 	}
-#endif
 }

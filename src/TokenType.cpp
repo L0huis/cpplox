@@ -45,7 +45,7 @@ std::ostream& operator<<(std::ostream& os, const TokenType& token)
 		case TokenType::TRUE: os << "TRUE"; break;
 		case TokenType::VAR: os << "VAR"; break;
 		case TokenType::WHILE: os << "WHILE"; break;
-		case TokenType::_EOF: os << "_EOF"; break;
+		case TokenType::END_OF_FILE: os << "END_OF_FILE"; break;
 		default: os << "UNKOWN"; break;
 	}
 	return os;

@@ -13,7 +13,7 @@
 
 struct Token
 {
-	using literal_t = std::variant<std::monostate, std::string, double>;
+	using literal_t = std::variant<std::monostate, bool, std::string, double>;
 
 	TokenType type;
 	std::string lexeme;

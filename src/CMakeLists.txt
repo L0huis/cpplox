@@ -1,4 +1,4 @@
-add_executable(main main.cpp Lox.cpp Lox.h TokenType.h Token.cpp Token.h Scanner.cpp Scanner.h TokenType.cpp Expr.cpp Expr.h AstPrinter.cpp AstPrinter.h Parser.cpp Parser.h)
+add_executable(main main.cpp common.h chunk.h chunk.cpp memory.h memory.cpp debug.cpp debug.h value.h value.cpp)
 
 target_link_libraries(main
     PRIVATE

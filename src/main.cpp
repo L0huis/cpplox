@@ -1,20 +1,20 @@
 
-#include <iostream>
-#include "Lox.h"
-#include "AstPrinter.h"
+#include "common.h"
+#include "chunk.h"
+#include "debug.h"
 
 int main(int argc, const char** argv)
 {
-	if (argc > 2)
-	{
-		std::cout << "Usage: cpplox [script]\n";
-	}
-	else if (argc == 2)
-	{
-		Lox::runFile(argv[1]);
-	}
-	else
-	{
-		Lox::runPrompt();
-	}
+    Chunk chunk;
+    initChunk(&chunk);
+
+    int constant = addConstant(&chunk, 1.2);
+    writeChunk(&chunk, OP_CONSTANT, 123);
+    writeChunk(&chunk, constant, 123);
+
+    writeChunk(&chunk, OP_RETURN, 123);
+
+    disassembleChunk(&chunk, "test constants");
+    freeChunk(&chunk);
+	return 0;
 }

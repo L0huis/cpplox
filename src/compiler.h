@@ -5,6 +5,8 @@
 #ifndef CPPLOX_COMPILER_H
 #define CPPLOX_COMPILER_H
 
-void compile(const char* source);
+#include "vm.h"
+
+bool compile(const char* source, Chunk* chunk);
 
 #endif  //CPPLOX_COMPILER_H

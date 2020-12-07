@@ -59,13 +59,13 @@ enum TokenType
 
 struct Token
 {
-    TokenType type;
+    TokenType   type;
     const char* start;
-    int length;
-    int line;
+    int         length;
+    int         line;
 };
 
-void initScanner(const char* source);
+void  initScanner(const char* source);
 Token scanToken();
 
 #endif  //CPPLOX_SCANNER_H

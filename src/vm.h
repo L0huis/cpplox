@@ -12,10 +12,12 @@
 
 struct VM
 {
-    Chunk* chunk;
+    Chunk*   chunk;
     uint8_t* ip;
-    Value stack[STACK_MAX];
-    Value* stackTop;
+    Value    stack[STACK_MAX];
+    Value*   stackTop;
+
+    Obj* objects;
 };
 
 enum InterpretResult
@@ -25,10 +27,12 @@ enum InterpretResult
     INTERPRET_RUNTIME_ERROR
 };
 
-void initVM();
-void freeVM();
+extern VM vm;
+
+void            initVM();
+void            freeVM();
 InterpretResult interpret(const char* source);
-void push(Value value);
-Value pop();
+void            push(Value value);
+Value           pop();
 
 #endif  //CPPLOX_VM_H

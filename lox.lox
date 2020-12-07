@@ -1,5 +1,11 @@
-var breakfast = "beignets";
-var beverage = "cafe au lait";
-breakfast = "beignets with " + beverage;
+var x = 0;
+var y = 1;
+var z = 0;
 
-print breakfast;
+for (var i = 0; i < 100; i = i + 1)
+{
+    z = x + y;
+    x = y;
+    y = z;
+    print x;
+}

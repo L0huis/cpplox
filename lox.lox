@@ -1,6 +1,15 @@
 fun fib(n) {
-  if (n < 2) return n;
-  return fib(n - 2) + fib(n - 1);
+  var x = 0;
+  var y = 1;
+  var z = 0;
+
+  for (var i = 0; i < n; i = i + 1)
+  {
+    z = x + y;
+    x = y;
+    y = z;
+  }
+  return x;
 }
 
 var start = clock();

@@ -15,9 +15,9 @@
 
 struct CallFrame
 {
-    ObjFunction* function;
-    uint8_t*     ip;
-    Value*       slots;
+    ObjClosure* closure;
+    uint8_t*    ip;
+    Value*      slots;
 };
 
 struct VM
@@ -25,10 +25,11 @@ struct VM
     CallFrame frames[FRAMES_MAX];
     int       frameCount;
 
-    Value  stack[STACK_MAX];
-    Value* stackTop;
-    Table  globals;
-    Table  strings;
+    Value       stack[STACK_MAX];
+    Value*      stackTop;
+    Table       globals;
+    Table       strings;
+    ObjUpvalue* openUpvalues;
 
     Obj* objects;
 };

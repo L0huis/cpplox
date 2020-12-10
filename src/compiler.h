@@ -9,5 +9,6 @@
 #include "vm.h"
 
 ObjFunction* compile(const char* source);
+void         markCompilerRoots();
 
 #endif  //CPPLOX_COMPILER_H

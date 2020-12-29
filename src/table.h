@@ -1,34 +1,52 @@
-//
-// Created by julianlohuis on 07/12/2020.
-//
-
-#ifndef CPPLOX_TABLE_H
-#define CPPLOX_TABLE_H
+//> Hash Tables table-h
+#ifndef clox_table_h
+#define clox_table_h
 
 #include "common.h"
 #include "value.h"
+//> entry
 
-struct Entry
+typedef struct
 {
     ObjString* key;
     Value      value;
-};
+} Entry;
+//< entry
 
-struct Table
+typedef struct
 {
     int    count;
     int    capacity;
     Entry* entries;
-};
+} Table;
 
-void       initTable(Table* table);
-void       freeTable(Table* table);
-bool       tableGet(Table* table, ObjString* key, Value* value);
-bool       tableSet(Table* table, ObjString* key, Value value);
-bool       tableDelete(Table* table, ObjString* key);
-void       tableAddAll(Table* from, Table* to);
+//> init-table-h
+void initTable(Table* table);
+//> free-table-h
+void freeTable(Table* table);
+//< free-table-h
+//> table-get-h
+bool tableGet(Table* table, ObjString* key, Value* value);
+//< table-get-h
+//> table-set-h
+bool tableSet(Table* table, ObjString* key, Value value);
+//< table-set-h
+//> table-delete-h
+bool tableDelete(Table* table, ObjString* key);
+//< table-delete-h
+//> table-add-all-h
+void tableAddAll(Table* from, Table* to);
+//< table-add-all-h
+//> table-find-string-h
 ObjString* tableFindString(Table* table, const char* chars, int length, uint32_t hash);
-void       tableRemoveWhite(Table* table);
-void       markTable(Table* table);
+//< table-find-string-h
+//> Garbage Collection table-remove-white-h
 
-#endif  //CPPLOX_TABLE_H
+void tableRemoveWhite(Table* table);
+//< Garbage Collection table-remove-white-h
+//> Garbage Collection mark-table-h
+void markTable(Table* table);
+//< Garbage Collection mark-table-h
+
+//< init-table-h
+#endif

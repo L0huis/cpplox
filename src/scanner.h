@@ -1,11 +1,9 @@
-//
-// Created by julianlohuis on 05/12/2020.
-//
+//> Scanning on Demand scanner-h
+#ifndef clox_scanner_h
+#define clox_scanner_h
+//> token-type
 
-#ifndef CPPLOX_SCANNER_H
-#define CPPLOX_SCANNER_H
-
-enum TokenType
+typedef enum
 {
     // Single-character tokens.
     TOKEN_LEFT_PAREN,
@@ -55,17 +53,22 @@ enum TokenType
 
     TOKEN_ERROR,
     TOKEN_EOF
-};
+} TokenType;
+//< token-type
+//> token-struct
 
-struct Token
+typedef struct
 {
     TokenType   type;
     const char* start;
     int         length;
     int         line;
-};
+} Token;
+//< token-struct
 
-void  initScanner(const char* source);
+void initScanner(const char* source);
+//> scan-token-h
 Token scanToken();
+//< scan-token-h
 
-#endif  //CPPLOX_SCANNER_H
+#endif

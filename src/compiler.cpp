@@ -490,6 +490,22 @@ static void call(bool canAssign)
     emitBytes(OP_CALL, argCount);
 }
 
+static void dot(bool canAssign)
+{
+    consume(TOKEN_IDENTIFIER, "Expect property name after '.'.");
+    uint8_t name = identifierConstant(&parser.previous);
+
+    if (canAssign && match(TOKEN_EQUAL))
+    {
+        expression();
+        emitBytes(OP_SET_PROPERTY, name);
+    }
+    else
+    {
+        emitBytes(OP_GET_PROPERTY, name);
+    }
+}
+
 static void literal(bool canAssign)
 {
     switch (parser.previous.type)
@@ -589,7 +605,7 @@ ParseRule rules[] = {
     {NULL, NULL, PREC_NONE},          // TOKEN_LEFT_BRACE
     {NULL, NULL, PREC_NONE},          // TOKEN_RIGHT_BRACE
     {NULL, NULL, PREC_NONE},          // TOKEN_COMMA
-    {NULL, NULL, PREC_NONE},          // TOKEN_DOT
+    {NULL, dot, PREC_NONE},           // TOKEN_DOT
     {unary, binary, PREC_TERM},       // TOKEN_MINUS
     {NULL, binary, PREC_TERM},        // TOKEN_PLUS
     {NULL, NULL, PREC_NONE},          // TOKEN_SEMICOLON
@@ -709,6 +725,19 @@ static void function(FunctionType type)
         emitByte(compiler.upvalues[i].isLocal ? 1 : 0);
         emitByte(compiler.upvalues[i].index);
     }
+}
+
+static void classDeclaration()
+{
+    consume(TOKEN_IDENTIFIER, "Expect class name.");
+    uint8_t nameConstant = identifierConstant(&parser.previous);
+    declareVariable();
+
+    emitBytes(OP_CLASS, nameConstant);
+    defineVariable(nameConstant);
+
+    consume(TOKEN_LEFT_BRACE, "Expect '{' before class body.");
+    consume(TOKEN_RIGHT_BRACE, "Expect '}' after class body.");
 }
 
 static void funDeclaration()
@@ -896,7 +925,11 @@ static void synchronize()
 
 static void declaration()
 {
-    if (match(TOKEN_FUN))
+    if (match(TOKEN_CLASS))
+    {
+        classDeclaration();
+    }
+    else if (match(TOKEN_FUN))
     {
         funDeclaration();
     }

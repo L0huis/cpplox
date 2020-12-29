@@ -1,6 +1,6 @@
 //> Scanning on Demand scanner-c
-#include <stdio.h>
-#include <string.h>
+#include <cstdio>
+#include <cstring>
 
 #include "common.h"
 #include "scanner.h"

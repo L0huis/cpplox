@@ -1,5 +1,5 @@
 //> Chunks of Bytecode chunk-c
-#include <stdlib.h>
+#include <cstdlib>
 
 #include "chunk.h"
 //> chunk-c-include-memory

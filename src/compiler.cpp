@@ -1,10 +1,10 @@
 //> Scanning on Demand compiler-c
-#include <stdio.h>
+#include <cstdio>
 //> Compiling Expressions compiler-include-stdlib
-#include <stdlib.h>
+#include <cstdlib>
 //< Compiling Expressions compiler-include-stdlib
 //> Local Variables compiler-include-string
-#include <string.h>
+#include <cstring>
 //< Local Variables compiler-include-string
 
 #include "common.h"

@@ -1,7 +1,7 @@
 //> Chunks of Bytecode value-c
-#include <stdio.h>
+#include <cstdio>
 //> Strings value-include-string
-#include <string.h>
+#include <cstring>
 //< Strings value-include-string
 
 //> Strings value-include-object

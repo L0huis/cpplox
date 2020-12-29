@@ -1,5 +1,5 @@
 //> Chunks of Bytecode debug-c
-#include <stdio.h>
+#include <cstdio>
 
 #include "debug.h"
 //> Closures debug-include-object

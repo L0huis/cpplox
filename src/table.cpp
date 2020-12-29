@@ -1,6 +1,6 @@
 //> Hash Tables table-c
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 #include "memory.h"
 #include "object.h"

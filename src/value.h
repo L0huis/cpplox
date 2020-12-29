@@ -3,7 +3,7 @@
 #define clox_value_h
 //> Optimization include-string
 
-#include <string.h>
+#include <cstring>
 //< Optimization include-string
 
 #include "common.h"

@@ -1,14 +1,14 @@
 //> A Virtual Machine vm-c
 //> Types of Values include-stdarg
-#include <stdarg.h>
+#include <cstdarg>
 //< Types of Values include-stdarg
 //> vm-include-stdio
-#include <stdio.h>
+#include <cstdio>
 //> Strings vm-include-string
-#include <string.h>
+#include <cstring>
 //< Strings vm-include-string
 //> Calls and Functions vm-include-time
-#include <time.h>
+#include <ctime>
 //< Calls and Functions vm-include-time
 
 //< vm-include-stdio

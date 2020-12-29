@@ -3,6 +3,7 @@
 #define clox_scanner_h
 //> token-type
 
+#include <string_view>
 typedef enum
 {
     // Single-character tokens.
@@ -66,7 +67,7 @@ typedef struct
 } Token;
 //< token-struct
 
-void initScanner(const char* source);
+void initScanner(std::string_view source);
 //> scan-token-h
 Token scanToken();
 //< scan-token-h

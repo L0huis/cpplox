@@ -2,6 +2,8 @@
 #ifndef clox_compiler_h
 #define clox_compiler_h
 
+#include <string_view>
+
 //> Strings compiler-include-object
 #include "object.h"
 //< Strings compiler-include-object
@@ -16,7 +18,7 @@ void compile(const char* source);
 bool compile(const char* source, Chunk* chunk);
 */
 //> Calls and Functions compile-h
-ObjFunction* compile(const char* source);
+ObjFunction* compile(std::string_view source);
 //< Calls and Functions compile-h
 //> Garbage Collection mark-compiler-roots-h
 void markCompilerRoots();

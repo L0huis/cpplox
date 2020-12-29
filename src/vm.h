@@ -2,6 +2,8 @@
 #ifndef clox_vm_h
 #define clox_vm_h
 
+#include <string_view>
+
 /* A Virtual Machine vm-h < Calls and Functions vm-include-object
 #include "chunk.h"
 */
@@ -103,7 +105,7 @@ void freeVM();
 InterpretResult interpret(Chunk* chunk);
 */
 //> Scanning on Demand vm-interpret-h
-InterpretResult interpret(const char* source);
+InterpretResult interpret(std::string_view source);
 //< Scanning on Demand vm-interpret-h
 //> push-pop
 void  push(Value value);

@@ -2,7 +2,10 @@
 //> Scanning on Demand main-includes
 #include <cstdio>
 #include <cstdlib>
-#include <cstring>
+#include <fstream>
+#include <string>
+#include <iterator>
+#include <iostream>
 
 //< Scanning on Demand main-includes
 #include "common.h"
@@ -19,67 +22,48 @@
 
 static void repl()
 {
-    char line[1024];
+    std::string line;
     for (;;)
     {
-        printf("> ");
+        std::cout << "> ";
 
-        if (!fgets(line, sizeof(line), stdin))
+        if (!std::getline(std::cin, line))
         {
-            printf("\n");
+            std::cout << '\n';
             break;
         }
-
         interpret(line);
     }
 }
 //< Scanning on Demand repl
 //> Scanning on Demand read-file
-static char* readFile(const char* path)
+static std::string readFile(const char* path)
 {
-    FILE* file = fopen(path, "rb");
+    std::ifstream file(path);
     //> no-file
-    if (file == nullptr)
+    if (!file.is_open())
     {
         fprintf(stderr, "Could not open file \"%s\".\n", path);
         exit(74);
     }
     //< no-file
 
-    fseek(file, 0L, SEEK_END);
-    size_t fileSize = ftell(file);
-    rewind(file);
+    file.seekg(0L, std::ios::end);
+    auto size = file.tellg();
+    file.seekg(0L, std::ios::beg);
 
-    char* buffer = (char*)malloc(fileSize + 1);
-    //> no-buffer
-    if (buffer == nullptr)
-    {
-        fprintf(stderr, "Not enough memory to read \"%s\".\n", path);
-        exit(74);
-    }
+    std::string buffer(size, '\0');
 
-    //< no-buffer
-    size_t bytesRead = fread(buffer, sizeof(char), fileSize, file);
-    //> no-read
-    if (bytesRead < fileSize)
-    {
-        fprintf(stderr, "Could not read file \"%s\".\n", path);
-        exit(74);
-    }
+    std::copy(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>(), buffer.begin());
 
-    //< no-read
-    buffer[bytesRead] = '\0';
-
-    fclose(file);
     return buffer;
 }
 //< Scanning on Demand read-file
 //> Scanning on Demand run-file
 static void runFile(const char* path)
 {
-    char*           source = readFile(path);
+    std::string     source = readFile(path);
     InterpretResult result = interpret(source);
-    free(source);  // [owner]
 
     if (result == INTERPRET_COMPILE_ERROR) exit(65);
     if (result == INTERPRET_RUNTIME_ERROR) exit(70);

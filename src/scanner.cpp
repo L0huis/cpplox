@@ -14,10 +14,10 @@ typedef struct
 
 Scanner scanner;
 //> init-scanner
-void initScanner(const char* source)
+void initScanner(std::string_view source)
 {
-    scanner.start   = source;
-    scanner.current = source;
+    scanner.start   = source.data();
+    scanner.current = source.data();
     scanner.line    = 1;
 }
 //< init-scanner

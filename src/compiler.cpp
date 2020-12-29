@@ -1580,7 +1580,7 @@ void compile(const char* source) {
 bool compile(const char* source, Chunk* chunk) {
 */
 //> Calls and Functions compile-signature
-ObjFunction* compile(const char* source)
+ObjFunction* compile(std::string_view source)
 {
     //< Calls and Functions compile-signature
     initScanner(source);

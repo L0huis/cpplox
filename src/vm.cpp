@@ -1008,7 +1008,7 @@ InterpretResult interpret(Chunk* chunk) {
   return run();
 */
 //> Scanning on Demand vm-interpret-c
-InterpretResult interpret(const char* source)
+InterpretResult interpret(std::string_view source)
 {
     /* Scanning on Demand vm-interpret-c < Compiling Expressions interpret-chunk
   compile(source);

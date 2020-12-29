@@ -1,7 +1,5 @@
-//> Scanning on Demand scanner-h
 #ifndef clox_scanner_h
 #define clox_scanner_h
-//> token-type
 
 #include <string_view>
 enum TokenType
@@ -55,8 +53,6 @@ enum TokenType
     TOKEN_ERROR,
     TOKEN_EOF
 };
-//< token-type
-//> token-struct
 
 struct Token
 {
@@ -65,11 +61,8 @@ struct Token
     int         length;
     int         line;
 };
-//< token-struct
 
-void initScanner(std::string_view source);
-//> scan-token-h
+void  initScanner(std::string_view source);
 Token scanToken();
-//< scan-token-h
 
 #endif

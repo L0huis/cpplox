@@ -25,6 +25,7 @@ static void repl()
         interpret(line);
     }
 }
+
 static std::string readFile(const char* path)
 {
     std::ifstream file(path);
@@ -44,6 +45,7 @@ static std::string readFile(const char* path)
 
     return buffer;
 }
+
 static void runFile(const char* path)
 {
     std::string     source = readFile(path);

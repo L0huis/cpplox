@@ -18,32 +18,39 @@ void    initScanner(std::string_view source)
     scanner.current = source.data();
     scanner.line    = 1;
 }
+
 static bool isAlpha(char c)
 {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_';
 }
+
 static bool isDigit(char c)
 {
     return c >= '0' && c <= '9';
 }
+
 static bool isAtEnd()
 {
     return *scanner.current == '\0';
 }
+
 static char advance()
 {
     scanner.current++;
     return scanner.current[-1];
 }
+
 static char peek()
 {
     return *scanner.current;
 }
+
 static char peekNext()
 {
     if (isAtEnd()) return '\0';
     return scanner.current[1];
 }
+
 static bool match(char expected)
 {
     if (isAtEnd()) return false;
@@ -52,6 +59,7 @@ static bool match(char expected)
     scanner.current++;
     return true;
 }
+
 static Token makeToken(TokenType type)
 {
     Token token;
@@ -62,6 +70,7 @@ static Token makeToken(TokenType type)
 
     return token;
 }
+
 static Token errorToken(const char* message)
 {
     Token token;
@@ -72,6 +81,7 @@ static Token errorToken(const char* message)
 
     return token;
 }
+
 static void skipWhitespace()
 {
     for (;;)
@@ -104,6 +114,7 @@ static void skipWhitespace()
         }
     }
 }
+
 static TokenType checkKeyword(int start, int length, const char* rest, TokenType type)
 {
     if (scanner.current - scanner.start == start + length && memcmp(scanner.start + start, rest, length) == 0)
@@ -113,6 +124,7 @@ static TokenType checkKeyword(int start, int length, const char* rest, TokenType
 
     return TOKEN_IDENTIFIER;
 }
+
 static TokenType identifierType()
 {
     switch (scanner.start[0])
@@ -153,12 +165,14 @@ static TokenType identifierType()
 
     return TOKEN_IDENTIFIER;
 }
+
 static Token identifier()
 {
     while (isAlpha(peek()) || isDigit(peek())) advance();
 
     return makeToken(identifierType());
 }
+
 static Token number()
 {
     while (isDigit(peek())) advance();
@@ -174,6 +188,7 @@ static Token number()
 
     return makeToken(TOKEN_NUMBER);
 }
+
 static Token string()
 {
     while (peek() != '"' && !isAtEnd())
@@ -188,6 +203,7 @@ static Token string()
     advance();
     return makeToken(TOKEN_STRING);
 }
+
 Token scanToken()
 {
     skipWhitespace();

@@ -13,6 +13,7 @@ void disassembleChunk(Chunk* chunk, const char* name)
         offset = disassembleInstruction(chunk, offset);
     }
 }
+
 static int constantInstruction(const char* name, Chunk* chunk, int offset)
 {
     uint8_t constant = chunk->code[offset + 1];
@@ -21,6 +22,7 @@ static int constantInstruction(const char* name, Chunk* chunk, int offset)
     printf("'\n");
     return offset + 2;
 }
+
 static int invokeInstruction(const char* name, Chunk* chunk, int offset)
 {
     uint8_t constant = chunk->code[offset + 1];
@@ -30,17 +32,20 @@ static int invokeInstruction(const char* name, Chunk* chunk, int offset)
     printf("'\n");
     return offset + 3;
 }
+
 static int simpleInstruction(const char* name, int offset)
 {
     printf("%s\n", name);
     return offset + 1;
 }
+
 static int byteInstruction(const char* name, Chunk* chunk, int offset)
 {
     uint8_t slot = chunk->code[offset + 1];
     printf("%-16s %4d\n", name, slot);
     return offset + 2;  // [debug]
 }
+
 static int jumpInstruction(const char* name, int sign, Chunk* chunk, int offset)
 {
     uint16_t jump = (uint16_t)(chunk->code[offset + 1] << 8);
@@ -48,6 +53,7 @@ static int jumpInstruction(const char* name, int sign, Chunk* chunk, int offset)
     printf("%-16s %4d -> %d\n", name, offset, offset + 3 + sign * jump);
     return offset + 3;
 }
+
 int disassembleInstruction(Chunk* chunk, int offset)
 {
     printf("%04d ", offset);

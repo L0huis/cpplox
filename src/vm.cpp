@@ -16,12 +16,14 @@ static Value clockNative([[maybe_unused]] int argCount, [[maybe_unused]] Value* 
 {
     return NUMBER_VAL((double)clock() / CLOCKS_PER_SEC);
 }
+
 static void resetStack()
 {
     vm.stackTop     = vm.stack;
     vm.frameCount   = 0;
     vm.openUpvalues = nullptr;
 }
+
 static void runtimeError(const char* format, ...)
 {
     va_list args;
@@ -42,6 +44,7 @@ static void runtimeError(const char* format, ...)
         {
             fprintf(stderr, "script\n");
         }
+
         else
         {
             fprintf(stderr, "%s()\n", function->name->chars);
@@ -50,6 +53,7 @@ static void runtimeError(const char* format, ...)
 
     resetStack();
 }
+
 static void defineNative(const char* name, NativeFn function)
 {
     push(OBJ_VAL(copyString(name, (int)strlen(name))));
@@ -86,20 +90,24 @@ void freeVM()
     vm.initString = nullptr;
     freeObjects();
 }
+
 void push(Value value)
 {
     *vm.stackTop = value;
     vm.stackTop++;
 }
+
 Value pop()
 {
     vm.stackTop--;
     return *vm.stackTop;
 }
+
 static Value peek(int distance)
 {
     return vm.stackTop[-1 - distance];
 }
+
 static bool call(ObjClosure* closure, int argCount)
 {
     if (argCount != closure->function->arity)
@@ -121,6 +129,7 @@ static bool call(ObjClosure* closure, int argCount)
     frame->slots = vm.stackTop - argCount - 1;
     return true;
 }
+
 static bool callValue(Value callee, int argCount)
 {
     if (IS_OBJ(callee))
@@ -143,6 +152,7 @@ static bool callValue(Value callee, int argCount)
                 {
                     return call(AS_CLOSURE(initializer), argCount);
                 }
+
                 else if (argCount != 0)
                 {
                     runtimeError("Expected 0 arguments but got %d.", argCount);
@@ -151,6 +161,7 @@ static bool callValue(Value callee, int argCount)
 
                 return true;
             }
+
             case OBJ_CLOSURE: return call(AS_CLOSURE(callee), argCount);
 
             case OBJ_NATIVE:
@@ -171,6 +182,7 @@ static bool callValue(Value callee, int argCount)
     runtimeError("Can only call functions and classes.");
     return false;
 }
+
 static bool invokeFromClass(ObjClass* klass, ObjString* name, int argCount)
 {
     Value method;
@@ -182,6 +194,7 @@ static bool invokeFromClass(ObjClass* klass, ObjString* name, int argCount)
 
     return call(AS_CLOSURE(method), argCount);
 }
+
 static bool invoke(ObjString* name, int argCount)
 {
     Value receiver = peek(argCount);
@@ -203,6 +216,7 @@ static bool invoke(ObjString* name, int argCount)
 
     return invokeFromClass(instance->klass, name, argCount);
 }
+
 static bool bindMethod(ObjClass* klass, ObjString* name)
 {
     Value method;
@@ -217,6 +231,7 @@ static bool bindMethod(ObjClass* klass, ObjString* name)
     push(OBJ_VAL(bound));
     return true;
 }
+
 static ObjUpvalue* captureUpvalue(Value* local)
 {
     ObjUpvalue* prevUpvalue = nullptr;
@@ -240,6 +255,7 @@ static ObjUpvalue* captureUpvalue(Value* local)
     {
         vm.openUpvalues = createdUpvalue;
     }
+
     else
     {
         prevUpvalue->next = createdUpvalue;
@@ -247,6 +263,7 @@ static ObjUpvalue* captureUpvalue(Value* local)
 
     return createdUpvalue;
 }
+
 static void closeUpvalues(Value* last)
 {
     while (vm.openUpvalues != nullptr && vm.openUpvalues->location >= last)
@@ -257,6 +274,7 @@ static void closeUpvalues(Value* last)
         vm.openUpvalues     = upvalue->next;
     }
 }
+
 static void defineMethod(ObjString* name)
 {
     Value     method = peek(0);
@@ -264,10 +282,12 @@ static void defineMethod(ObjString* name)
     tableSet(&klass->methods, name, method);
     pop();
 }
+
 static bool isFalsey(Value value)
 {
     return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
 }
+
 static void concatenate()
 {
     ObjString* b = AS_STRING(peek(0));
@@ -284,6 +304,7 @@ static void concatenate()
     pop();
     push(OBJ_VAL(result));
 }
+
 static InterpretResult run()
 {
     CallFrame* frame = &vm.frames[vm.frameCount - 1];
@@ -316,6 +337,7 @@ static InterpretResult run()
             printValue(*slot);
             printf(" ]");
         }
+
         printf("\n");
         disassembleInstruction(&frame->closure->function->chunk,
                                (int)(frame->ip - frame->closure->function->chunk.code));
@@ -330,6 +352,7 @@ static InterpretResult run()
                 push(constant);
                 break;
             }
+
             case OP_NIL: push(NIL_VAL); break;
             case OP_TRUE: push(BOOL_VAL(true)); break;
             case OP_FALSE: push(BOOL_VAL(false)); break;
@@ -358,6 +381,7 @@ static InterpretResult run()
                     runtimeError("Undefined variable '%s'.", name->chars);
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 push(value);
                 break;
             }
@@ -379,6 +403,7 @@ static InterpretResult run()
                     runtimeError("Undefined variable '%s'.", name->chars);
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 break;
             }
 
@@ -419,6 +444,7 @@ static InterpretResult run()
                 {
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 break;
             }
 
@@ -447,6 +473,7 @@ static InterpretResult run()
                 {
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 break;
             }
 
@@ -466,19 +493,23 @@ static InterpretResult run()
                 {
                     concatenate();
                 }
+
                 else if (IS_NUMBER(peek(0)) && IS_NUMBER(peek(1)))
                 {
                     double b = AS_NUMBER(pop());
                     double a = AS_NUMBER(pop());
                     push(NUMBER_VAL(a + b));
                 }
+
                 else
                 {
                     runtimeError("Operands must be two numbers or two strings.");
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 break;
             }
+
             case OP_SUBTRACT: BINARY_OP(NUMBER_VAL, -); break;
             case OP_MULTIPLY: BINARY_OP(NUMBER_VAL, *); break;
             case OP_DIVIDE: BINARY_OP(NUMBER_VAL, /); break;
@@ -528,6 +559,7 @@ static InterpretResult run()
                 {
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 frame = &vm.frames[vm.frameCount - 1];
                 break;
             }
@@ -540,6 +572,7 @@ static InterpretResult run()
                 {
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 frame = &vm.frames[vm.frameCount - 1];
                 break;
             }
@@ -553,6 +586,7 @@ static InterpretResult run()
                 {
                     return INTERPRET_RUNTIME_ERROR;
                 }
+
                 frame = &vm.frames[vm.frameCount - 1];
                 break;
             }
@@ -570,11 +604,13 @@ static InterpretResult run()
                     {
                         closure->upvalues[i] = captureUpvalue(frame->slots + index);
                     }
+
                     else
                     {
                         closure->upvalues[i] = frame->closure->upvalues[index];
                     }
                 }
+
                 break;
             }
 
@@ -630,6 +666,7 @@ static InterpretResult run()
 #undef READ_STRING
 #undef BINARY_OP
 }
+
 InterpretResult interpret(std::string_view source)
 {
     ObjFunction* function = compile(source);

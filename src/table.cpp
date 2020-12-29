@@ -14,11 +14,13 @@ void initTable(Table* table)
     table->capacity = -1;
     table->entries  = nullptr;
 }
+
 void freeTable(Table* table)
 {
     FREE_ARRAY(Entry, table->entries, table->capacity + 1);
     initTable(table);
 }
+
 // NOTE: The "Optimization" chapter has a manual copy of this function.
 // If you change it here, make sure to update that copy.
 static Entry* findEntry(Entry* entries, int capacity, ObjString* key)
@@ -52,6 +54,7 @@ static Entry* findEntry(Entry* entries, int capacity, ObjString* key)
         index = (index + 1) & capacity;
     }
 }
+
 bool tableGet(Table* table, ObjString* key, Value* value)
 {
     if (table->count == 0) return false;
@@ -62,6 +65,7 @@ bool tableGet(Table* table, ObjString* key, Value* value)
     *value = entry->value;
     return true;
 }
+
 static void adjustCapacity(Table* table, int capacity)
 {
     Entry* entries = ALLOCATE(Entry, capacity + 1);
@@ -87,6 +91,7 @@ static void adjustCapacity(Table* table, int capacity)
     table->entries  = entries;
     table->capacity = capacity;
 }
+
 bool tableSet(Table* table, ObjString* key, Value value)
 {
     if (table->count + 1 > (table->capacity + 1) * TABLE_MAX_LOAD)
@@ -104,6 +109,7 @@ bool tableSet(Table* table, ObjString* key, Value value)
     entry->value = value;
     return isNewKey;
 }
+
 bool tableDelete(Table* table, ObjString* key)
 {
     if (table->count == 0) return false;
@@ -118,6 +124,7 @@ bool tableDelete(Table* table, ObjString* key)
 
     return true;
 }
+
 void tableAddAll(Table* from, Table* to)
 {
     for (int i = 0; i <= from->capacity; i++)
@@ -129,6 +136,7 @@ void tableAddAll(Table* from, Table* to)
         }
     }
 }
+
 ObjString* tableFindString(Table* table, const char* chars, int length, uint32_t hash)
 {
     if (table->count == 0) return nullptr;
@@ -154,6 +162,7 @@ ObjString* tableFindString(Table* table, const char* chars, int length, uint32_t
         index = (index + 1) & table->capacity;
     }
 }
+
 void tableRemoveWhite(Table* table)
 {
     for (int i = 0; i <= table->capacity; i++)
@@ -165,6 +174,7 @@ void tableRemoveWhite(Table* table)
         }
     }
 }
+
 void markTable(Table* table)
 {
     for (int i = 0; i <= table->capacity; i++)

@@ -27,7 +27,7 @@
 
 VM vm;  // [one]
 //> Calls and Functions clock-native
-static Value clockNative(int argCount, Value* args)
+static Value clockNative([[maybe_unused]] int argCount, [[maybe_unused]] Value* args)
 {
     return NUMBER_VAL((double)clock() / CLOCKS_PER_SEC);
 }

@@ -660,7 +660,7 @@ static uint8_t argumentList()
 }
 //< Calls and Functions argument-list
 //> Jumping Back and Forth and
-static void and_(bool canAssign)
+static void and_([[maybe_unused]] bool canAssign)
 {
     int endJump = emitJump(OP_JUMP_IF_FALSE);
 
@@ -675,7 +675,7 @@ static void and_(bool canAssign)
 static void binary() {
 */
 //> Global Variables binary
-static void binary(bool canAssign)
+static void binary([[maybe_unused]] bool canAssign)
 {
     //< Global Variables binary
     // Remember the operator.
@@ -707,7 +707,7 @@ static void binary(bool canAssign)
 }
 //< Compiling Expressions binary
 //> Calls and Functions compile-call
-static void call(bool canAssign)
+static void call([[maybe_unused]] bool canAssign)
 {
     uint8_t argCount = argumentList();
     emitBytes(OP_CALL, argCount);
@@ -743,7 +743,7 @@ static void dot(bool canAssign)
 static void literal() {
 */
 //> Global Variables parse-literal
-static void literal(bool canAssign)
+static void literal([[maybe_unused]] bool canAssign)
 {
     //< Global Variables parse-literal
     switch (parser.previous.type)
@@ -760,7 +760,7 @@ static void literal(bool canAssign)
 static void grouping() {
 */
 //> Global Variables grouping
-static void grouping(bool canAssign)
+static void grouping([[maybe_unused]] bool canAssign)
 {
     //< Global Variables grouping
     expression();
@@ -772,7 +772,7 @@ static void number() {
 */
 //> Compiling Expressions number
 //> Global Variables number
-static void number(bool canAssign)
+static void number([[maybe_unused]] bool canAssign)
 {
     //< Global Variables number
     double value = strtod(parser.previous.start, nullptr);
@@ -785,7 +785,7 @@ static void number(bool canAssign)
 }
 //< Compiling Expressions number
 //> Jumping Back and Forth or
-static void or_(bool canAssign)
+static void or_([[maybe_unused]] bool canAssign)
 {
     int elseJump = emitJump(OP_JUMP_IF_FALSE);
     int endJump  = emitJump(OP_JUMP);
@@ -802,7 +802,7 @@ static void string() {
 */
 //> Strings parse-string
 //> Global Variables string
-static void string(bool canAssign)
+static void string([[maybe_unused]] bool canAssign)
 {
     //< Global Variables string
     emitConstant(OBJ_VAL(copyString(parser.previous.start + 1, parser.previous.length - 2)));
@@ -894,7 +894,7 @@ static Token syntheticToken(const char* text)
 }
 //< Superclasses synthetic-token
 //> Superclasses super
-static void super_(bool canAssign)
+static void super_([[maybe_unused]] bool canAssign)
 {
     //> super-errors
     if (currentClass == nullptr)
@@ -935,7 +935,7 @@ static void super_(bool canAssign)
 }
 //< Superclasses super
 //> Methods and Initializers this
-static void this_(bool canAssign)
+static void this_([[maybe_unused]] bool canAssign)
 {
     //> this-outside-class
     if (currentClass == nullptr)
@@ -952,7 +952,7 @@ static void this_(bool canAssign)
 static void unary() {
 */
 //> Global Variables unary
-static void unary(bool canAssign)
+static void unary([[maybe_unused]] bool canAssign)
 {
     //< Global Variables unary
     TokenType operatorType = parser.previous.type;

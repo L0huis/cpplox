@@ -6,19 +6,19 @@
 #include "value.h"
 //> entry
 
-typedef struct
+struct Entry
 {
     ObjString* key;
     Value      value;
-} Entry;
+};
 //< entry
 
-typedef struct
+struct Table
 {
     int    count;
     int    capacity;
     Entry* entries;
-} Table;
+};
 
 //> init-table-h
 void initTable(Table* table);

@@ -28,7 +28,7 @@
 //< Calls and Functions frame-max
 //> Calls and Functions call-frame
 
-typedef struct
+struct CallFrame
 {
     /* Calls and Functions call-frame < Closures call-frame-closure
   ObjFunction* function;
@@ -38,10 +38,10 @@ typedef struct
     //< Closures call-frame-closure
     uint8_t* ip;
     Value*   slots;
-} CallFrame;
+};
 //< Calls and Functions call-frame
 
-typedef struct
+struct VM
 {
     /* A Virtual Machine vm-h < Calls and Functions frame-array
   Chunk* chunk;
@@ -84,15 +84,15 @@ typedef struct
     int   grayCapacity;
     Obj** grayStack;
     //< Garbage Collection vm-gray-stack
-} VM;
+};
 
 //> interpret-result
-typedef enum
+enum InterpretResult
 {
     INTERPRET_OK,
     INTERPRET_COMPILE_ERROR,
     INTERPRET_RUNTIME_ERROR
-} InterpretResult;
+};
 
 //< interpret-result
 //> Strings extern-vm

@@ -5,12 +5,12 @@
 #include "common.h"
 #include "scanner.h"
 
-typedef struct
+struct Scanner
 {
     const char* start;
     const char* current;
     int         line;
-} Scanner;
+};
 
 Scanner scanner;
 //> init-scanner

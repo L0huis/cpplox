@@ -8,7 +8,7 @@
 //< chunk-h-include-value
 //> op-enum
 
-typedef enum
+enum OpCode
 {
     //> op-constant
     OP_CONSTANT,
@@ -101,11 +101,11 @@ typedef enum
     //> Methods and Initializers method-op
     OP_METHOD
     //< Methods and Initializers method-op
-} OpCode;
+};
 //< op-enum
 //> chunk-struct
 
-typedef struct
+struct Chunk
 {
     //> count-and-capacity
     int count;
@@ -118,7 +118,7 @@ typedef struct
     //> chunk-constants
     ValueArray constants;
     //< chunk-constants
-} Chunk;
+};
 //< chunk-struct
 //> init-chunk-h
 

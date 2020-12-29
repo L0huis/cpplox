@@ -4,7 +4,7 @@
 //> token-type
 
 #include <string_view>
-typedef enum
+enum TokenType
 {
     // Single-character tokens.
     TOKEN_LEFT_PAREN,
@@ -54,17 +54,17 @@ typedef enum
 
     TOKEN_ERROR,
     TOKEN_EOF
-} TokenType;
+};
 //< token-type
 //> token-struct
 
-typedef struct
+struct Token
 {
     TokenType   type;
     const char* start;
     int         length;
     int         line;
-} Token;
+};
 //< token-struct
 
 void initScanner(std::string_view source);

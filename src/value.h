@@ -9,9 +9,9 @@
 #include "common.h"
 
 //> Strings forward-declare-obj
-typedef struct Obj Obj;
+struct Obj;
 //> forward-declare-obj-string
-typedef struct ObjString ObjString;
+struct ObjString;
 //< forward-declare-obj-string
 
 //< Strings forward-declare-obj
@@ -31,7 +31,7 @@ typedef struct ObjString ObjString;
     #define TAG_TRUE  3  // 11.
 //< tags
 
-typedef uint64_t Value;
+using Value = uint64_t;
     //> is-number
 
     //> is-bool
@@ -95,7 +95,7 @@ static inline Value numToValue(double num)
 
 //< Optimization nan-boxing
 //> Types of Values value-type
-typedef enum
+enum ValueType
 {
     VAL_BOOL,
     VAL_NIL,  // [user-types]
@@ -103,14 +103,14 @@ typedef enum
     //> Strings val-obj
     VAL_OBJ
     //< Strings val-obj
-} ValueType;
+};
 
 //< Types of Values value-type
 /* Chunks of Bytecode value-h < Types of Values value
-typedef double Value;
+using Value = double
 */
 //> Types of Values value
-typedef struct
+struct Value
 {
     ValueType type;
     union
@@ -121,7 +121,7 @@ typedef struct
         Obj* obj;
         //< Strings union-object
     } as;  // [as]
-} Value;
+};
     //< Types of Values value
     //> Types of Values is-macros
 
@@ -155,12 +155,12 @@ typedef struct
 //< Optimization end-if-nan-boxing
 //> value-array
 
-typedef struct
+struct ValueArray
 {
     int    capacity;
     int    count;
     Value* values;
-} ValueArray;
+};
 //< value-array
 //> array-fns-h
 

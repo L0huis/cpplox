@@ -61,7 +61,7 @@
 //< as-string
 //> obj-type
 
-typedef enum
+enum ObjType
 {
     //> Methods and Initializers obj-type-bound-method
     OBJ_BOUND_METHOD,
@@ -85,7 +85,7 @@ typedef enum
     //> Closures obj-type-upvalue
     OBJ_UPVALUE
     //< Closures obj-type-upvalue
-} ObjType;
+};
 //< obj-type
 
 struct Obj
@@ -100,7 +100,7 @@ struct Obj
 };
 //> Calls and Functions obj-function
 
-typedef struct
+struct ObjFunction
 {
     Obj obj;
     int arity;
@@ -109,17 +109,17 @@ typedef struct
     //< Closures upvalue-count
     Chunk      chunk;
     ObjString* name;
-} ObjFunction;
+};
 //< Calls and Functions obj-function
 //> Calls and Functions obj-native
 
-typedef Value (*NativeFn)(int argCount, Value* args);
+using NativeFn = Value (*)(int argCount, Value* args);
 
-typedef struct
+struct ObjNative
 {
     Obj      obj;
     NativeFn function;
-} ObjNative;
+};
 //< Calls and Functions obj-native
 //> obj-string
 
@@ -134,7 +134,7 @@ struct ObjString
 };
 //< obj-string
 //> Closures obj-upvalue
-typedef struct ObjUpvalue
+struct ObjUpvalue
 {
     Obj    obj;
     Value* location;
@@ -142,12 +142,12 @@ typedef struct ObjUpvalue
     Value closed;
     //< closed-field
     //> next-field
-    struct ObjUpvalue* next;
+    ObjUpvalue* next;
     //< next-field
-} ObjUpvalue;
+};
 //< Closures obj-upvalue
 //> Closures obj-closure
-typedef struct
+struct ObjClosure
 {
     Obj          obj;
     ObjFunction* function;
@@ -155,36 +155,36 @@ typedef struct
     ObjUpvalue** upvalues;
     int          upvalueCount;
     //< upvalue-fields
-} ObjClosure;
+};
 //< Closures obj-closure
 //> Classes and Instances obj-class
 
-typedef struct
+struct ObjClass
 {
     Obj        obj;
     ObjString* name;
     //> Methods and Initializers class-methods
     Table methods;
     //< Methods and Initializers class-methods
-} ObjClass;
+};
 //< Classes and Instances obj-class
 //> Classes and Instances obj-instance
 
-typedef struct
+struct ObjInstance
 {
     Obj       obj;
     ObjClass* klass;
     Table     fields;  // [fields]
-} ObjInstance;
+};
 //< Classes and Instances obj-instance
 
 //> Methods and Initializers obj-bound-method
-typedef struct
+struct ObjBoundMethod
 {
     Obj         obj;
     Value       receiver;
     ObjClosure* method;
-} ObjBoundMethod;
+};
 
 //< Methods and Initializers obj-bound-method
 //> Methods and Initializers new-bound-method-h

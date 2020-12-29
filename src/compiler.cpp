@@ -21,7 +21,7 @@
 //< Compiling Expressions include-debug
 //> Compiling Expressions parser
 
-typedef struct
+struct Parser
 {
     Token current;
     Token previous;
@@ -31,10 +31,10 @@ typedef struct
     //> panic-mode-field
     bool panicMode;
     //< panic-mode-field
-} Parser;
+};
 //> precedence
 
-typedef enum
+enum Precedence
 {
     PREC_NONE,
     PREC_ASSIGNMENT,  // =
@@ -47,46 +47,47 @@ typedef enum
     PREC_UNARY,       // ! -
     PREC_CALL,        // . ()
     PREC_PRIMARY
-} Precedence;
+};
 //< precedence
 //> parse-fn-type
 
 //< parse-fn-type
 /* Compiling Expressions parse-fn-type < Global Variables parse-fn-type
-typedef void (*ParseFn)();
+using ParseFn = void (*)();
 */
 //> Global Variables parse-fn-type
-typedef void (*ParseFn)(bool canAssign);
+using ParseFn = void (*)(bool canAssign);
+
 //< Global Variables parse-fn-type
 //> parse-rule
 
-typedef struct
+struct ParseRule
 {
     ParseFn    prefix;
     ParseFn    infix;
     Precedence precedence;
-} ParseRule;
+};
 //< parse-rule
 //> Local Variables local-struct
 
-typedef struct
+struct Local
 {
     Token name;
     int   depth;
     //> Closures is-captured-field
     bool isCaptured;
     //< Closures is-captured-field
-} Local;
+};
 //< Local Variables local-struct
 //> Closures upvalue-struct
-typedef struct
+struct Upvalue
 {
     uint8_t index;
     bool    isLocal;
-} Upvalue;
+};
 //< Closures upvalue-struct
 //> Calls and Functions function-type-enum
-typedef enum
+enum FunctionType
 {
     TYPE_FUNCTION,
     //> Methods and Initializers initializer-type-enum
@@ -96,17 +97,17 @@ typedef enum
     TYPE_METHOD,
     //< Methods and Initializers method-type-enum
     TYPE_SCRIPT
-} FunctionType;
+};
 //< Calls and Functions function-type-enum
 //> Local Variables compiler-struct
 
 /* Local Variables compiler-struct < Calls and Functions enclosing-field
-typedef struct {
+struct Compiler {
 */
 //> Calls and Functions enclosing-field
-typedef struct Compiler
+struct Compiler
 {
-    struct Compiler* enclosing;
+    Compiler* enclosing;
     //< Calls and Functions enclosing-field
     //> Calls and Functions function-fields
     ObjFunction* function;
@@ -119,18 +120,18 @@ typedef struct Compiler
     Upvalue upvalues[UINT8_COUNT];
     //< Closures upvalues-array
     int scopeDepth;
-} Compiler;
+};
 //< Local Variables compiler-struct
 //> Methods and Initializers class-compiler-struct
 
-typedef struct ClassCompiler
+struct ClassCompiler
 {
-    struct ClassCompiler* enclosing;
-    Token                 name;
+    ClassCompiler* enclosing;
+    Token          name;
     //> Superclasses has-superclass
     bool hasSuperclass;
     //< Superclasses has-superclass
-} ClassCompiler;
+};
 //< Methods and Initializers class-compiler-struct
 
 Parser parser;

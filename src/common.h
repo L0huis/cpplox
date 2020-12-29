@@ -7,7 +7,7 @@
     //> A Virtual Machine define-debug-trace
 
     //> Optimization define-nan-boxing
-    #define NAN_BOXING
+//    #define NAN_BOXING
     //< Optimization define-nan-boxing
     //> Compiling Expressions define-debug-print-code
     #define DEBUG_PRINT_CODE
@@ -30,8 +30,8 @@
 //> omit
 // In the book, we show them defined, but for working on them locally,
 // we don't want them to be.
-//#undef DEBUG_PRINT_CODE
-//#undef DEBUG_TRACE_EXECUTION
-//#undef DEBUG_STRESS_GC
-//#undef DEBUG_LOG_GC
+#undef DEBUG_PRINT_CODE
+#undef DEBUG_TRACE_EXECUTION
+#undef DEBUG_STRESS_GC
+#undef DEBUG_LOG_GC
 //< omit

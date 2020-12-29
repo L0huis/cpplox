@@ -11,7 +11,7 @@
 //> Garbage Collection debug-log-includes
 
 #ifdef DEBUG_LOG_GC
-    #include <stdio.h>
+    #include <cstdio>
     #include "debug.h"
 #endif
 //< Garbage Collection debug-log-includes
@@ -45,19 +45,19 @@ void* reallocate(void* pointer, size_t oldSize, size_t newSize)
     if (newSize == 0)
     {
         free(pointer);
-        return NULL;
+        return nullptr;
     }
 
     void* result = realloc(pointer, newSize);
     //> out-of-memory
-    if (result == NULL) exit(1);
+    if (result == nullptr) exit(1);
     //< out-of-memory
     return result;
 }
 //> Garbage Collection mark-object
 void markObject(Obj* object)
 {
-    if (object == NULL) return;
+    if (object == nullptr) return;
     //> check-is-marked
     if (object->isMarked) return;
 
@@ -79,7 +79,7 @@ void markObject(Obj* object)
         vm.grayStack    = (Obj**)realloc(vm.grayStack, sizeof(Obj*) * vm.grayCapacity);
         //> exit-gray-stack
 
-        if (vm.grayStack == NULL) exit(1);
+        if (vm.grayStack == nullptr) exit(1);
         //< exit-gray-stack
     }
 
@@ -281,7 +281,7 @@ static void markRoots()
     //< mark-closures
     //> mark-open-upvalues
 
-    for (ObjUpvalue* upvalue = vm.openUpvalues; upvalue != NULL; upvalue = upvalue->next)
+    for (ObjUpvalue* upvalue = vm.openUpvalues; upvalue != nullptr; upvalue = upvalue->next)
     {
         markObject((Obj*)upvalue);
     }
@@ -311,9 +311,9 @@ static void traceReferences()
 //> Garbage Collection sweep
 static void sweep()
 {
-    Obj* previous = NULL;
+    Obj* previous = nullptr;
     Obj* object   = vm.objects;
-    while (object != NULL)
+    while (object != nullptr)
     {
         if (object->isMarked)
         {
@@ -327,7 +327,7 @@ static void sweep()
         {
             Obj* unreached = object;
             object         = object->next;
-            if (previous != NULL)
+            if (previous != nullptr)
             {
                 previous->next = object;
             }
@@ -388,7 +388,7 @@ void collectGarbage()
 void freeObjects()
 {
     Obj* object = vm.objects;
-    while (object != NULL)
+    while (object != nullptr)
     {
         Obj* next = object->next;
         freeObject(object);

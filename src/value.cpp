@@ -12,7 +12,7 @@
 
 void initValueArray(ValueArray* array)
 {
-    array->values   = NULL;
+    array->values   = nullptr;
     array->capacity = 0;
     array->count    = 0;
 }

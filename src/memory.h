@@ -8,7 +8,7 @@
 //< Strings memory-include-object
 
 //> Strings allocate
-#define ALLOCATE(type, count) (type*)reallocate(NULL, 0, sizeof(type) * (count))
+#define ALLOCATE(type, count) (type*)reallocate(nullptr, 0, sizeof(type) * (count))
 //> free
 
 #define FREE(type, pointer) reallocate(pointer, sizeof(type), 0)

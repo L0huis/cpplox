@@ -40,7 +40,7 @@ static void resetStack()
     vm.frameCount = 0;
     //< Calls and Functions reset-frame-count
     //> Closures init-open-upvalues
-    vm.openUpvalues = NULL;
+    vm.openUpvalues = nullptr;
     //< Closures init-open-upvalues
 }
 //< reset-stack
@@ -79,7 +79,7 @@ static void runtimeError(const char* format, ...)
         // executed.
         size_t instruction = frame->ip - function->chunk.code - 1;
         fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
-        if (function->name == NULL)
+        if (function->name == nullptr)
         {
             fprintf(stderr, "script\n");
         }
@@ -110,7 +110,7 @@ void initVM()
     resetStack();
     //< call-reset-stack
     //> Strings init-objects-root
-    vm.objects = NULL;
+    vm.objects = nullptr;
     //< Strings init-objects-root
     //> Garbage Collection init-gc-fields
     vm.bytesAllocated = 0;
@@ -120,7 +120,7 @@ void initVM()
 
     vm.grayCount    = 0;
     vm.grayCapacity = 0;
-    vm.grayStack    = NULL;
+    vm.grayStack    = nullptr;
     //< Garbage Collection init-gray-stack
     //> Global Variables init-globals
 
@@ -132,7 +132,7 @@ void initVM()
     //> Methods and Initializers init-init-string
 
     //> null-init-string
-    vm.initString = NULL;
+    vm.initString = nullptr;
     //< null-init-string
     vm.initString = copyString("init", 4);
     //< Methods and Initializers init-init-string
@@ -151,7 +151,7 @@ void freeVM()
     freeTable(&vm.strings);
     //< Hash Tables free-strings
     //> Methods and Initializers clear-init-string
-    vm.initString = NULL;
+    vm.initString = nullptr;
     //< Methods and Initializers clear-init-string
     //> Strings call-free-objects
     freeObjects();
@@ -353,16 +353,16 @@ static bool bindMethod(ObjClass* klass, ObjString* name)
 static ObjUpvalue* captureUpvalue(Value* local)
 {
     //> look-for-existing-upvalue
-    ObjUpvalue* prevUpvalue = NULL;
+    ObjUpvalue* prevUpvalue = nullptr;
     ObjUpvalue* upvalue     = vm.openUpvalues;
 
-    while (upvalue != NULL && upvalue->location > local)
+    while (upvalue != nullptr && upvalue->location > local)
     {
         prevUpvalue = upvalue;
         upvalue     = upvalue->next;
     }
 
-    if (upvalue != NULL && upvalue->location == local)
+    if (upvalue != nullptr && upvalue->location == local)
     {
         return upvalue;
     }
@@ -372,7 +372,7 @@ static ObjUpvalue* captureUpvalue(Value* local)
     //> insert-upvalue-in-list
     createdUpvalue->next = upvalue;
 
-    if (prevUpvalue == NULL)
+    if (prevUpvalue == nullptr)
     {
         vm.openUpvalues = createdUpvalue;
     }
@@ -388,7 +388,7 @@ static ObjUpvalue* captureUpvalue(Value* local)
 //> Closures close-upvalues
 static void closeUpvalues(Value* last)
 {
-    while (vm.openUpvalues != NULL && vm.openUpvalues->location >= last)
+    while (vm.openUpvalues != nullptr && vm.openUpvalues->location >= last)
     {
         ObjUpvalue* upvalue = vm.openUpvalues;
         upvalue->closed     = *upvalue->location;
@@ -1028,7 +1028,7 @@ InterpretResult interpret(const char* source)
 */
     //> Calls and Functions interpret-stub
     ObjFunction* function = compile(source);
-    if (function == NULL) return INTERPRET_COMPILE_ERROR;
+    if (function == nullptr) return INTERPRET_COMPILE_ERROR;
 
     push(OBJ_VAL(function));
     //< Calls and Functions interpret-stub

@@ -17,7 +17,7 @@
 
 static Obj* allocateObject(size_t size, ObjType type)
 {
-    Obj* object  = (Obj*)reallocate(NULL, 0, size);
+    Obj* object  = (Obj*)reallocate(nullptr, 0, size);
     object->type = type;
     //> Garbage Collection init-is-marked
     object->isMarked = false;
@@ -64,7 +64,7 @@ ObjClosure* newClosure(ObjFunction* function)
     ObjUpvalue** upvalues = ALLOCATE(ObjUpvalue*, function->upvalueCount);
     for (int i = 0; i < function->upvalueCount; i++)
     {
-        upvalues[i] = NULL;
+        upvalues[i] = nullptr;
     }
 
     //< allocate-upvalue-array
@@ -86,7 +86,7 @@ ObjFunction* newFunction()
     //> Closures init-upvalue-count
     function->upvalueCount = 0;
     //< Closures init-upvalue-count
-    function->name = NULL;
+    function->name = nullptr;
     initChunk(&function->chunk);
     return function;
 }
@@ -161,7 +161,7 @@ ObjString* takeString(char* chars, int length)
     uint32_t hash = hashString(chars, length);
     //> take-string-intern
     ObjString* interned = tableFindString(&vm.strings, chars, length, hash);
-    if (interned != NULL)
+    if (interned != nullptr)
     {
         FREE_ARRAY(char, chars, length + 1);
         return interned;
@@ -178,7 +178,7 @@ ObjString* copyString(const char* chars, int length)
     uint32_t hash = hashString(chars, length);
     //> copy-string-intern
     ObjString* interned = tableFindString(&vm.strings, chars, length, hash);
-    if (interned != NULL) return interned;
+    if (interned != nullptr) return interned;
     //< copy-string-intern
 
     //< Hash Tables copy-string-hash
@@ -202,7 +202,7 @@ ObjUpvalue* newUpvalue(Value* slot)
     //< init-closed
     upvalue->location = slot;
     //> init-next
-    upvalue->next = NULL;
+    upvalue->next = nullptr;
     //< init-next
     return upvalue;
 }
@@ -211,7 +211,7 @@ ObjUpvalue* newUpvalue(Value* slot)
 static void printFunction(ObjFunction* function)
 {
     //> print-script
-    if (function->name == NULL)
+    if (function->name == nullptr)
     {
         printf("<script>");
         return;

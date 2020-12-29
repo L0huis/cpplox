@@ -39,7 +39,7 @@ static char* readFile(const char* path)
 {
     FILE* file = fopen(path, "rb");
     //> no-file
-    if (file == NULL)
+    if (file == nullptr)
     {
         fprintf(stderr, "Could not open file \"%s\".\n", path);
         exit(74);
@@ -52,7 +52,7 @@ static char* readFile(const char* path)
 
     char* buffer = (char*)malloc(fileSize + 1);
     //> no-buffer
-    if (buffer == NULL)
+    if (buffer == nullptr)
     {
         fprintf(stderr, "Not enough memory to read \"%s\".\n", path);
         exit(74);

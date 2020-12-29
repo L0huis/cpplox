@@ -137,11 +137,11 @@ Parser parser;
 
 //< Compiling Expressions parser
 //> Local Variables current-compiler
-Compiler* current = NULL;
+Compiler* current = nullptr;
 //< Local Variables current-compiler
 //> Methods and Initializers current-class
 
-ClassCompiler* currentClass = NULL;
+ClassCompiler* currentClass = nullptr;
 //< Methods and Initializers current-class
 //> Compiling Expressions compiling-chunk
 
@@ -340,7 +340,7 @@ static void initCompiler(Compiler* compiler, FunctionType type)
     //> store-enclosing
     compiler->enclosing = current;
     //< store-enclosing
-    compiler->function = NULL;
+    compiler->function = nullptr;
     compiler->type     = type;
     //< Calls and Functions init-compiler
     compiler->localCount = 0;
@@ -403,7 +403,7 @@ static ObjFunction* endCompiler()
     disassembleChunk(currentChunk(), "code");
 */
         //> Calls and Functions disassemble-end
-        disassembleChunk(currentChunk(), function->name != NULL ? function->name->chars : "<script>");
+        disassembleChunk(currentChunk(), function->name != nullptr ? function->name->chars : "<script>");
         //< Calls and Functions disassemble-end
     }
 #endif
@@ -526,7 +526,7 @@ static int addUpvalue(Compiler* compiler, uint8_t index, bool isLocal)
 //> Closures resolve-upvalue
 static int resolveUpvalue(Compiler* compiler, Token* name)
 {
-    if (compiler->enclosing == NULL) return -1;
+    if (compiler->enclosing == nullptr) return -1;
 
     int local = resolveLocal(compiler->enclosing, name);
     if (local != -1)
@@ -775,7 +775,7 @@ static void number() {
 static void number(bool canAssign)
 {
     //< Global Variables number
-    double value = strtod(parser.previous.start, NULL);
+    double value = strtod(parser.previous.start, nullptr);
     /* Compiling Expressions number < Types of Values const-number-val
   emitConstant(value);
 */
@@ -897,7 +897,7 @@ static Token syntheticToken(const char* text)
 static void super_(bool canAssign)
 {
     //> super-errors
-    if (currentClass == NULL)
+    if (currentClass == nullptr)
     {
         error("Can't use 'super' outside of a class.");
     }
@@ -938,7 +938,7 @@ static void super_(bool canAssign)
 static void this_(bool canAssign)
 {
     //> this-outside-class
-    if (currentClass == NULL)
+    if (currentClass == nullptr)
     {
         error("Can't use 'this' outside of a class.");
         return;
@@ -980,46 +980,46 @@ static void unary(bool canAssign)
 //< Compiling Expressions unary
 //> Compiling Expressions rules
 ParseRule rules[] = {
-    {grouping, call, PREC_CALL},      // TOKEN_LEFT_PAREN
-    {NULL, NULL, PREC_NONE},          // TOKEN_RIGHT_PAREN
-    {NULL, NULL, PREC_NONE},          // [big] // TOKEN_LEFT_BRACE
-    {NULL, NULL, PREC_NONE},          // TOKEN_RIGHT_BRACE
-    {NULL, NULL, PREC_NONE},          // TOKEN_COMMA
-    {NULL, dot, PREC_CALL},           // TOKEN_DOT
-    {unary, binary, PREC_TERM},       // TOKEN_MINUS
-    {NULL, binary, PREC_TERM},        // TOKEN_PLUS
-    {NULL, NULL, PREC_NONE},          // TOKEN_SEMICOLON
-    {NULL, binary, PREC_FACTOR},      // TOKEN_SLASH
-    {NULL, binary, PREC_FACTOR},      // TOKEN_STAR
-    {unary, NULL, PREC_NONE},         // TOKEN_BANG
-    {NULL, binary, PREC_EQUALITY},    // TOKEN_BANG_EQUAL
-    {NULL, NULL, PREC_NONE},          // TOKEN_EQUAL
-    {NULL, binary, PREC_EQUALITY},    // TOKEN_EQUAL_EQUAL
-    {NULL, binary, PREC_COMPARISON},  // TOKEN_GREATER
-    {NULL, binary, PREC_COMPARISON},  // TOKEN_GREATER_EQUAL
-    {NULL, binary, PREC_COMPARISON},  // TOKEN_LESS
-    {NULL, binary, PREC_COMPARISON},  // TOKEN_LESS_EQUAL
-    {variable, NULL, PREC_NONE},      // TOKEN_IDENTIFIER
-    {string, NULL, PREC_NONE},        // TOKEN_STRING
-    {number, NULL, PREC_NONE},        // TOKEN_NUMBER
-    {NULL, and_, PREC_AND},           // TOKEN_AND
-    {NULL, NULL, PREC_NONE},          // TOKEN_CLASS
-    {NULL, NULL, PREC_NONE},          // TOKEN_ELSE
-    {literal, NULL, PREC_NONE},       // TOKEN_FALSE
-    {NULL, NULL, PREC_NONE},          // TOKEN_FOR
-    {NULL, NULL, PREC_NONE},          // TOKEN_FUN
-    {NULL, NULL, PREC_NONE},          // TOKEN_IF
-    {literal, NULL, PREC_NONE},       // TOKEN_NIL
-    {NULL, or_, PREC_OR},             // TOKEN_OR
-    {NULL, NULL, PREC_NONE},          // TOKEN_PRINT
-    {NULL, NULL, PREC_NONE},          // TOKEN_RETURN
-    {super_, NULL, PREC_NONE},        // TOKEN_SUPER
-    {this_, NULL, PREC_NONE},         // TOKEN_THIS
-    {literal, NULL, PREC_NONE},       // TOKEN_TRUE
-    {NULL, NULL, PREC_NONE},          // TOKEN_VAR
-    {NULL, NULL, PREC_NONE},          // TOKEN_WHILE
-    {NULL, NULL, PREC_NONE},          // TOKEN_ERROR
-    {NULL, NULL, PREC_NONE},          // TOKEN_EOF
+    {grouping, call, PREC_CALL},         // TOKEN_LEFT_PAREN
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_RIGHT_PAREN
+    {nullptr, nullptr, PREC_NONE},       // [big] // TOKEN_LEFT_BRACE
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_RIGHT_BRACE
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_COMMA
+    {nullptr, dot, PREC_CALL},           // TOKEN_DOT
+    {unary, binary, PREC_TERM},          // TOKEN_MINUS
+    {nullptr, binary, PREC_TERM},        // TOKEN_PLUS
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_SEMICOLON
+    {nullptr, binary, PREC_FACTOR},      // TOKEN_SLASH
+    {nullptr, binary, PREC_FACTOR},      // TOKEN_STAR
+    {unary, nullptr, PREC_NONE},         // TOKEN_BANG
+    {nullptr, binary, PREC_EQUALITY},    // TOKEN_BANG_EQUAL
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_EQUAL
+    {nullptr, binary, PREC_EQUALITY},    // TOKEN_EQUAL_EQUAL
+    {nullptr, binary, PREC_COMPARISON},  // TOKEN_GREATER
+    {nullptr, binary, PREC_COMPARISON},  // TOKEN_GREATER_EQUAL
+    {nullptr, binary, PREC_COMPARISON},  // TOKEN_LESS
+    {nullptr, binary, PREC_COMPARISON},  // TOKEN_LESS_EQUAL
+    {variable, nullptr, PREC_NONE},      // TOKEN_IDENTIFIER
+    {string, nullptr, PREC_NONE},        // TOKEN_STRING
+    {number, nullptr, PREC_NONE},        // TOKEN_NUMBER
+    {nullptr, and_, PREC_AND},           // TOKEN_AND
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_CLASS
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_ELSE
+    {literal, nullptr, PREC_NONE},       // TOKEN_FALSE
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_FOR
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_FUN
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_IF
+    {literal, nullptr, PREC_NONE},       // TOKEN_NIL
+    {nullptr, or_, PREC_OR},             // TOKEN_OR
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_PRINT
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_RETURN
+    {super_, nullptr, PREC_NONE},        // TOKEN_SUPER
+    {this_, nullptr, PREC_NONE},         // TOKEN_THIS
+    {literal, nullptr, PREC_NONE},       // TOKEN_TRUE
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_VAR
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_WHILE
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_ERROR
+    {nullptr, nullptr, PREC_NONE},       // TOKEN_EOF
 };
 //< Compiling Expressions rules
 //> Compiling Expressions parse-precedence
@@ -1031,7 +1031,7 @@ static void parsePrecedence(Precedence precedence)
     //> precedence-body
     advance();
     ParseFn prefixRule = getRule(parser.previous.type)->prefix;
-    if (prefixRule == NULL)
+    if (prefixRule == nullptr)
     {
         error("Expect expression.");
         return;
@@ -1640,14 +1640,14 @@ ObjFunction* compile(const char* source)
 */
     //> Calls and Functions call-end-compiler
     ObjFunction* function = endCompiler();
-    return parser.hadError ? NULL : function;
+    return parser.hadError ? nullptr : function;
     //< Calls and Functions call-end-compiler
 }
 //> Garbage Collection mark-compiler-roots
 void markCompilerRoots()
 {
     Compiler* compiler = current;
-    while (compiler != NULL)
+    while (compiler != nullptr)
     {
         markObject((Obj*)compiler->function);
         compiler = compiler->enclosing;

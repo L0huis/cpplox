@@ -200,7 +200,6 @@ static void emitReturn()
     {
         emitBytes(OP_GET_LOCAL, 0);
     }
-
     else
     {
         emitByte(OP_NIL);
@@ -233,7 +232,7 @@ static void patchJump(int offset)
 
     if (jump > UINT16_MAX)
     {
-        error("Too much m_code to jump over.");
+        error("Too much code to jump over.");
     }
 
     currentChunk()->code()[offset]     = (jump >> 8) & 0xff;
@@ -263,7 +262,6 @@ static void initCompiler(Compiler* compiler, FunctionType type)
         local->name.start  = "this";
         local->name.length = 4;
     }
-
     else
     {
         local->name.start  = "";
@@ -303,7 +301,6 @@ static void endScope()
         {
             emitByte(OP_CLOSE_UPVALUE);
         }
-
         else
         {
             emitByte(OP_POP);
@@ -341,7 +338,6 @@ static int resolveLocal(Compiler* compiler, Token* name)
             {
                 error("Can't read local variable in its own initializer.");
             }
-
             return i;
         }
     }
@@ -419,13 +415,11 @@ static void declareVariable()
         {
             break;  // [negative]
         }
-
         if (identifiersEqual(name, &local->name))
         {
             error("Already variable with this name in this scope.");
         }
     }
-
     addLocal(*name);
 }
 
@@ -452,7 +446,6 @@ static void defineVariable(uint8_t global)
         markInitialized();
         return;
     }
-
     emitBytes(OP_DEFINE_GLOBAL, global);
 }
 
@@ -464,12 +457,10 @@ static uint8_t argumentList()
         do
         {
             expression();
-
             if (argCount == 255)
             {
                 error("Can't have more than 255 arguments.");
             }
-
             argCount++;
         } while (match(TOKEN_COMMA));
     }
@@ -530,14 +521,12 @@ static void dot(bool canAssign)
         expression();
         emitBytes(OP_SET_PROPERTY, name);
     }
-
     else if (match(TOKEN_LEFT_PAREN))
     {
         uint8_t argCount = argumentList();
         emitBytes(OP_INVOKE, name);
         emitByte(argCount);
     }
-
     else
     {
         emitBytes(OP_GET_PROPERTY, name);
@@ -593,13 +582,11 @@ static void namedVariable(Token name, bool canAssign)
         getOp = OP_GET_LOCAL;
         setOp = OP_SET_LOCAL;
     }
-
     else if ((arg = resolveUpvalue(current, &name)) != -1)
     {
         getOp = OP_GET_UPVALUE;
         setOp = OP_SET_UPVALUE;
     }
-
     else
     {
         arg   = identifierConstant(&name);
@@ -612,7 +599,6 @@ static void namedVariable(Token name, bool canAssign)
         expression();
         emitBytes(setOp, (uint8_t)arg);
     }
-
     else
     {
         emitBytes(getOp, (uint8_t)arg);
@@ -638,7 +624,6 @@ static void super_([[maybe_unused]] bool canAssign)
     {
         error("Can't use 'super' outside of a class.");
     }
-
     else if (!currentClass->hasSuperclass)
     {
         error("Can't use 'super' in a class with no superclass.");
@@ -656,7 +641,6 @@ static void super_([[maybe_unused]] bool canAssign)
         emitBytes(OP_SUPER_INVOKE, name);
         emitByte(argCount);
     }
-
     else
     {
         namedVariable(syntheticToken("super"), false);
@@ -671,9 +655,9 @@ static void this_([[maybe_unused]] bool canAssign)
         error("Can't use 'this' outside of a class.");
         return;
     }
-
     variable(false);
 }  // [this]
+
 static void unary([[maybe_unused]] bool canAssign)
 {
     TokenType operatorType = parser.previous.type;
@@ -795,7 +779,6 @@ static void function(FunctionType type)
             {
                 errorAtCurrent("Can't have more than 255 parameters.");
             }
-
             uint8_t paramConstant = parseVariable("Expect parameter name.");
             defineVariable(paramConstant);
         } while (match(TOKEN_COMMA));
@@ -902,7 +885,6 @@ static void varDeclaration()
     {
         expression();
     }
-
     else
     {
         emitByte(OP_NIL);
@@ -929,12 +911,10 @@ static void forStatement()
     {
         // No initializer.
     }
-
     else if (match(TOKEN_VAR))
     {
         varDeclaration();
     }
-
     else
     {
         expressionStatement();
@@ -1017,14 +997,12 @@ static void returnStatement()
     {
         emitReturn();
     }
-
     else
     {
         if (current->type == TYPE_INITIALIZER)
         {
             error("Can't return a value from an initializer.");
         }
-
         expression();
         consume(TOKEN_SEMICOLON, "Expect ';' after return value.");
         emitByte(OP_RETURN);
@@ -1085,17 +1063,14 @@ static void declaration()
     {
         classDeclaration();
     }
-
     else if (match(TOKEN_FUN))
     {
         funDeclaration();
     }
-
     else if (match(TOKEN_VAR))
     {
         varDeclaration();
     }
-
     else
     {
         statement();
@@ -1110,34 +1085,28 @@ static void statement()
     {
         printStatement();
     }
-
     else if (match(TOKEN_FOR))
     {
         forStatement();
     }
-
     else if (match(TOKEN_IF))
     {
         ifStatement();
     }
-
     else if (match(TOKEN_RETURN))
     {
         returnStatement();
     }
-
     else if (match(TOKEN_WHILE))
     {
         whileStatement();
     }
-
     else if (match(TOKEN_LEFT_BRACE))
     {
         beginScope();
         block();
         endScope();
     }
-
     else
     {
         expressionStatement();

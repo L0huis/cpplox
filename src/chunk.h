@@ -55,8 +55,9 @@ private:
 public:
     Chunk() = default;
 
-    void              writeChunk(uint8_t byte, int line);
-    [[nodiscard]] int addConstant(Value value);
+    void writeChunk(uint8_t byte, int line) noexcept;
+
+    [[nodiscard]] int addConstant(Value value) noexcept;
 
     [[nodiscard]] size_t size() const noexcept;
 

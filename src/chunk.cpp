@@ -14,13 +14,13 @@ void freeChunk(Chunk* chunk)
     std::destroy_at(chunk);
 }
 
-void Chunk::writeChunk(uint8_t byte, int line)
+void Chunk::writeChunk(uint8_t byte, int line) noexcept
 {
     m_code.push_back(byte);
     m_lines.push_back(line);
 }
 
-int Chunk::addConstant(Value value)
+int Chunk::addConstant(Value value) noexcept
 {
     push(value);
     m_constants.push_back(value);

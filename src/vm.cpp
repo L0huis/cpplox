@@ -39,8 +39,8 @@ static void runtimeError(const char* format, ...)
         ObjFunction* function = frame->closure->function;
         // -1 because the IP is sitting on the next instruction to be
         // executed.
-        size_t instruction = frame->ip - function->chunk.code.data() - 1;
-        fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
+        size_t instruction = frame->ip - function->chunk.code().data() - 1;
+        fprintf(stderr, "[line %d] in ", function->chunk.lines()[instruction]);
         if (function->name == nullptr)
         {
             fprintf(stderr, "script\n");
@@ -126,7 +126,7 @@ static bool call(ObjClosure* closure, int argCount)
 
     CallFrame* frame = &vm.frames[vm.frameCount++];
     frame->closure   = closure;
-    frame->ip        = closure->function->chunk.code.data();
+    frame->ip        = closure->function->chunk.code().data();
 
     frame->slots = vm.stackTop - argCount - 1;
     return true;
@@ -313,7 +313,7 @@ static InterpretResult run()
 
 #define READ_BYTE()     (*frame->ip++)
 #define READ_SHORT()    (frame->ip += 2, (uint16_t)((frame->ip[-2] << 8) | frame->ip[-1]))
-#define READ_CONSTANT() (frame->closure->function->chunk.constants.values[READ_BYTE()])
+#define READ_CONSTANT() (frame->closure->function->chunk.constants()[READ_BYTE()])
 #define READ_STRING()   AS_STRING(READ_CONSTANT())
 
 #define BINARY_OP(valueType, op)                        \
@@ -342,7 +342,7 @@ static InterpretResult run()
 
         printf("\n");
         disassembleInstruction(&frame->closure->function->chunk,
-                               (int)(frame->ip - frame->closure->function->chunk.code.data()));
+                               (int)(frame->ip - frame->closure->function->chunk.m_code.data()));
 #endif
 
         uint8_t instruction;

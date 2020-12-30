@@ -166,7 +166,7 @@ static bool match(TokenType type)
 
 static void emitByte(uint8_t byte)
 {
-    writeChunk(currentChunk(), byte, parser.previous.line);
+    currentChunk()->writeChunk(byte, parser.previous.line);
 }
 
 static void emitBytes(uint8_t byte1, uint8_t byte2)
@@ -179,7 +179,7 @@ static void emitLoop(int loopStart)
 {
     emitByte(OP_LOOP);
 
-    int offset = currentChunk()->code.size() - loopStart + 2;
+    int offset = currentChunk()->size() - loopStart + 2;
     if (offset > UINT16_MAX) error("Loop body too large.");
 
     emitByte((offset >> 8) & 0xff);
@@ -191,7 +191,7 @@ static int emitJump(uint8_t instruction)
     emitByte(instruction);
     emitByte(0xff);
     emitByte(0xff);
-    return currentChunk()->code.size() - 2;
+    return currentChunk()->size() - 2;
 }
 
 static void emitReturn()
@@ -211,10 +211,10 @@ static void emitReturn()
 
 static uint8_t makeConstant(Value value)
 {
-    int constant = addConstant(currentChunk(), value);
+    int constant = currentChunk()->addConstant(value);
     if (constant > UINT8_MAX)
     {
-        error("Too many constants in one chunk.");
+        error("Too many m_constants in one chunk.");
         return 0;
     }
 
@@ -229,15 +229,15 @@ static void emitConstant(Value value)
 static void patchJump(int offset)
 {
     // -2 to adjust for the bytecode for the jump offset itself.
-    int jump = currentChunk()->code.size() - offset - 2;
+    int jump = currentChunk()->size() - offset - 2;
 
     if (jump > UINT16_MAX)
     {
-        error("Too much code to jump over.");
+        error("Too much m_code to jump over.");
     }
 
-    currentChunk()->code[offset]     = (jump >> 8) & 0xff;
-    currentChunk()->code[offset + 1] = jump & 0xff;
+    currentChunk()->code()[offset]     = (jump >> 8) & 0xff;
+    currentChunk()->code()[offset + 1] = jump & 0xff;
 }
 
 static void initCompiler(Compiler* compiler, FunctionType type)
@@ -940,7 +940,7 @@ static void forStatement()
         expressionStatement();
     }
 
-    int loopStart = currentChunk()->code.size();
+    int loopStart = currentChunk()->size();
 
     int exitJump = -1;
     if (!match(TOKEN_SEMICOLON))
@@ -957,7 +957,7 @@ static void forStatement()
     {
         int bodyJump = emitJump(OP_JUMP);
 
-        int incrementStart = currentChunk()->code.size();
+        int incrementStart = currentChunk()->size();
         expression();
         emitByte(OP_POP);
         consume(TOKEN_RIGHT_PAREN, "Expect ')' after for clauses.");
@@ -1010,7 +1010,7 @@ static void returnStatement()
 {
     if (current->type == TYPE_SCRIPT)
     {
-        error("Can't return from top-level code.");
+        error("Can't return from top-level m_code.");
     }
 
     if (match(TOKEN_SEMICOLON))
@@ -1033,7 +1033,7 @@ static void returnStatement()
 
 static void whileStatement()
 {
-    int loopStart = currentChunk()->code.size();
+    int loopStart = currentChunk()->size();
 
     consume(TOKEN_LEFT_PAREN, "Expect '(' after 'while'.");
     expression();

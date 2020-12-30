@@ -70,9 +70,9 @@ void markValue(Value value)
 
 static void markArray(ValueArray* array)
 {
-    for (int i = 0; i < array->values.size(); i++)
+    for (int i = 0; i < array->size(); i++)
     {
-        markValue(array->values[i]);
+        markValue(array->at(i));
     }
 }
 
@@ -117,7 +117,7 @@ static void blackenObject(Obj* object)
         {
             ObjFunction* function = (ObjFunction*)object;
             markObject((Obj*)function->name);
-            markArray(&function->chunk.constants);
+            markArray(&function->chunk.constants());
             break;
         }
 

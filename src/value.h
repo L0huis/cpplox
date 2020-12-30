@@ -87,10 +87,7 @@ struct Value
 
 #endif
 
-struct ValueArray
-{
-    std::vector<Value> values{};
-};
+using ValueArray = std::vector<Value>;
 
 bool valuesEqual(Value a, Value b);
 void initValueArray(ValueArray* array);

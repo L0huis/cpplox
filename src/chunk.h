@@ -45,16 +45,27 @@ enum OpCode
     OP_METHOD
 };
 
-struct Chunk
+class Chunk
 {
-    std::vector<uint8_t> code;
-    std::vector<int>     lines;
-    ValueArray           constants{};
+private:
+    std::vector<uint8_t> m_code{};
+    std::vector<int>     m_lines{};
+    ValueArray           m_constants{};
+
+public:
+    Chunk() = default;
+
+    void              writeChunk(uint8_t byte, int line);
+    [[nodiscard]] int addConstant(Value value);
+
+    [[nodiscard]] size_t size() const noexcept;
+
+    [[nodiscard]] std::vector<uint8_t>& code() noexcept;
+    [[nodiscard]] std::vector<int>&     lines() noexcept;
+    [[nodiscard]] ValueArray&           constants() noexcept;
 };
 
 void initChunk(Chunk* chunk);
 void freeChunk(Chunk* chunk);
-void writeChunk(Chunk* chunk, uint8_t byte, int line);
-int  addConstant(Chunk* chunk, Value value);
 
 #endif

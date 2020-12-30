@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <cstring>
 
 #include "object.h"
 #include "memory.h"
@@ -7,12 +6,12 @@
 
 void initValueArray(ValueArray* array)
 {
-    array->values = std::vector<Value>{};
+    *array = std::vector<Value>{};
 }
 
 void writeValueArray(ValueArray* array, Value value)
 {
-    array->values.push_back(value);
+    array->push_back(value);
 }
 
 void freeValueArray(ValueArray* array)

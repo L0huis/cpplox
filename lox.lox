@@ -1,4 +1,5 @@
-fun fib(n) {
+fun fib(n)
+{
   var x = 0;
   var y = 1;
   var z = 0;
@@ -12,6 +13,9 @@ fun fib(n) {
   return x;
 }
 
-var start = clock();
-print fib(50);
-print clock() - start;
+fun foo()
+{
+
+}
+
+fib(10);

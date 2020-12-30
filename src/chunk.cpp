@@ -7,25 +7,43 @@
 void initChunk(Chunk* chunk)
 {
     std::construct_at(chunk);
-    initValueArray(&chunk->constants);
 }
 
 void freeChunk(Chunk* chunk)
 {
     std::destroy_at(chunk);
-    initChunk(chunk);
 }
 
-void writeChunk(Chunk* chunk, uint8_t byte, int line)
+void Chunk::writeChunk(uint8_t byte, int line)
 {
-    chunk->code.push_back(byte);
-    chunk->lines.push_back(line);
+    m_code.push_back(byte);
+    m_lines.push_back(line);
 }
 
-int addConstant(Chunk* chunk, Value value)
+int Chunk::addConstant(Value value)
 {
     push(value);
-    writeValueArray(&chunk->constants, value);
+    m_constants.push_back(value);
     pop();
-    return chunk->constants.values.size() - 1;
+    return m_constants.size() - 1;
+}
+
+size_t Chunk::size() const noexcept
+{
+    return m_code.size();
+}
+
+std::vector<uint8_t>& Chunk::code() noexcept
+{
+    return m_code;
+}
+
+std::vector<int>& Chunk::lines() noexcept
+{
+    return m_lines;
+}
+
+ValueArray& Chunk::constants() noexcept
+{
+    return m_constants;
 }

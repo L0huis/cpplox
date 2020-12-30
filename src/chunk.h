@@ -47,11 +47,9 @@ enum OpCode
 
 struct Chunk
 {
-    int        count;
-    int        capacity;
-    uint8_t*   code;
-    int*       lines;
-    ValueArray constants;
+    std::vector<uint8_t> code;
+    std::vector<int>     lines;
+    ValueArray           constants{};
 };
 
 void initChunk(Chunk* chunk);

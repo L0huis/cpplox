@@ -179,7 +179,7 @@ static void emitLoop(int loopStart)
 {
     emitByte(OP_LOOP);
 
-    int offset = currentChunk()->count - loopStart + 2;
+    int offset = currentChunk()->code.size() - loopStart + 2;
     if (offset > UINT16_MAX) error("Loop body too large.");
 
     emitByte((offset >> 8) & 0xff);
@@ -191,7 +191,7 @@ static int emitJump(uint8_t instruction)
     emitByte(instruction);
     emitByte(0xff);
     emitByte(0xff);
-    return currentChunk()->count - 2;
+    return currentChunk()->code.size() - 2;
 }
 
 static void emitReturn()
@@ -229,7 +229,7 @@ static void emitConstant(Value value)
 static void patchJump(int offset)
 {
     // -2 to adjust for the bytecode for the jump offset itself.
-    int jump = currentChunk()->count - offset - 2;
+    int jump = currentChunk()->code.size() - offset - 2;
 
     if (jump > UINT16_MAX)
     {
@@ -940,7 +940,7 @@ static void forStatement()
         expressionStatement();
     }
 
-    int loopStart = currentChunk()->count;
+    int loopStart = currentChunk()->code.size();
 
     int exitJump = -1;
     if (!match(TOKEN_SEMICOLON))
@@ -957,7 +957,7 @@ static void forStatement()
     {
         int bodyJump = emitJump(OP_JUMP);
 
-        int incrementStart = currentChunk()->count;
+        int incrementStart = currentChunk()->code.size();
         expression();
         emitByte(OP_POP);
         consume(TOKEN_RIGHT_PAREN, "Expect ')' after for clauses.");
@@ -1033,7 +1033,7 @@ static void returnStatement()
 
 static void whileStatement()
 {
-    int loopStart = currentChunk()->count;
+    int loopStart = currentChunk()->code.size();
 
     consume(TOKEN_LEFT_PAREN, "Expect '(' after 'while'.");
     expression();

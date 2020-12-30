@@ -1,12 +1,19 @@
 #ifndef clox_memory_h
 #define clox_memory_h
 
+#include <memory>
+
 #include "common.h"
 #include "object.h"
 
 #define ALLOCATE(type, count) (type*)reallocate(nullptr, 0, sizeof(type) * (count))
 
-#define FREE(type, pointer) reallocate(pointer, sizeof(type), 0)
+#define FREE(type, pointer)                    \
+    do                                         \
+    {                                          \
+        std::destroy_at<type>((type*)pointer); \
+        reallocate(pointer, sizeof(type), 0);  \
+    } while (false)
 
 #define GROW_CAPACITY(capacity) ((capacity) < 8 ? 8 : (capacity)*2)
 

@@ -1,5 +1,6 @@
 #include <cstdio>
 #include <cstring>
+#include <memory>
 
 #include "memory.h"
 #include "object.h"
@@ -7,11 +8,13 @@
 #include "value.h"
 #include "vm.h"
 
-#define ALLOCATE_OBJ(type, objectType) (type*)allocateObject(sizeof(type), objectType)
+#define ALLOCATE_OBJ(type, objectType) (type*)allocateObject<type>(sizeof(type), objectType)
 
+template<typename T>
 static Obj* allocateObject(size_t size, ObjType type)
 {
-    Obj* object      = (Obj*)reallocate(nullptr, 0, size);
+    T*   tmp         = (T*)reallocate(nullptr, 0, size);
+    Obj* object      = (Obj*)std::construct_at<T>(tmp);
     object->type     = type;
     object->isMarked = false;
 

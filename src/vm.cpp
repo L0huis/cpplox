@@ -2,6 +2,7 @@
 #include <cstdio>
 #include <cstring>
 #include <ctime>
+#include <memory>
 
 #include "common.h"
 #include "compiler.h"
@@ -38,13 +39,12 @@ static void runtimeError(const char* format, ...)
         ObjFunction* function = frame->closure->function;
         // -1 because the IP is sitting on the next instruction to be
         // executed.
-        size_t instruction = frame->ip - function->chunk.code - 1;
+        size_t instruction = frame->ip - function->chunk.code.data() - 1;
         fprintf(stderr, "[line %d] in ", function->chunk.lines[instruction]);
         if (function->name == nullptr)
         {
             fprintf(stderr, "script\n");
         }
-
         else
         {
             fprintf(stderr, "%s()\n", function->name->chars);
@@ -65,6 +65,8 @@ static void defineNative(const char* name, NativeFn function)
 
 void initVM()
 {
+    std::construct_at(&vm);
+
     resetStack();
     vm.objects        = nullptr;
     vm.bytesAllocated = 0;
@@ -124,7 +126,7 @@ static bool call(ObjClosure* closure, int argCount)
 
     CallFrame* frame = &vm.frames[vm.frameCount++];
     frame->closure   = closure;
-    frame->ip        = closure->function->chunk.code;
+    frame->ip        = closure->function->chunk.code.data();
 
     frame->slots = vm.stackTop - argCount - 1;
     return true;
@@ -340,7 +342,7 @@ static InterpretResult run()
 
         printf("\n");
         disassembleInstruction(&frame->closure->function->chunk,
-                               (int)(frame->ip - frame->closure->function->chunk.code));
+                               (int)(frame->ip - frame->closure->function->chunk.code.data()));
 #endif
 
         uint8_t instruction;

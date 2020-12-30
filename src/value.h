@@ -2,6 +2,7 @@
 #define clox_value_h
 
 #include <cstring>
+#include <vector>
 
 #include "common.h"
 
@@ -88,9 +89,7 @@ struct Value
 
 struct ValueArray
 {
-    int    capacity;
-    int    count;
-    Value* values;
+    std::vector<Value> values{};
 };
 
 bool valuesEqual(Value a, Value b);

@@ -5,8 +5,8 @@
 #include "vm.h"
 
 #ifdef DEBUG_LOG_GC
-    #include <cstdio>
-    #include "debug.h"
+#include <cstdio>
+#include "debug.h"
 #endif
 
 #define GC_HEAP_GROW_FACTOR 2

@@ -2016,3 +2016,27 @@ TEST_CASE("function__parameters", "[function]")
     auto result = interpret(source);
     REQUIRE(result == INTERPRET_OK);
 }
+
+TEST_CASE("empty_file", "[empty_file]")
+{
+    initVM();
+    auto source = read_file(R"(S:\C++\cpplox\test\loxsrc\empty_file.lox)");
+    auto result = interpret(source);
+    REQUIRE(result == INTERPRET_OK);
+}
+
+TEST_CASE("precedence", "[precedence]")
+{
+    initVM();
+    auto source = read_file(R"(S:\C++\cpplox\test\loxsrc\precedence.lox)");
+    auto result = interpret(source);
+    REQUIRE(result == INTERPRET_OK);
+}
+
+TEST_CASE("unexpected_character", "[unexpected_character]")
+{
+    initVM();
+    auto source = read_file(R"(S:\C++\cpplox\test\loxsrc\unexpected_character.lox)");
+    auto result = interpret(source);
+    REQUIRE(result == INTERPRET_COMPILE_ERROR);
+}

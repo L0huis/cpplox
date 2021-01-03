@@ -1,5 +1,9 @@
 #include <cstdio>
-#include <cstring>
+#include <array>
+#include <string_view>
+#include <stdexcept>
+#include <algorithm>
+#include <map>
 
 #include "common.h"
 #include "scanner.h"
@@ -12,7 +16,8 @@ struct Scanner
 };
 
 Scanner scanner;
-void    initScanner(std::string_view source)
+
+void initScanner(std::string_view source)
 {
     scanner.start   = source.data();
     scanner.current = source.data();
@@ -115,55 +120,45 @@ static void skipWhitespace()
     }
 }
 
-static TokenType checkKeyword(int start, int length, const char* rest, TokenType type)
+using namespace std::literals::string_view_literals;
+
+template<typename Key, typename Value, std::size_t Size>
+struct Map
 {
-    if (scanner.current - scanner.start == start + length && memcmp(scanner.start + start, rest, length) == 0)
+    std::array<std::pair<Key, Value>, Size> data;
+
+    [[nodiscard]] constexpr Value at(const Key& key) const
     {
-        return type;
+        const auto itr = std::find_if(begin(data), end(data), [&key](const auto& v) { return v.first == key; });
+        if (itr != end(data))
+        {
+            return itr->second;
+        }
+        return TOKEN_IDENTIFIER;
     }
+};
 
-    return TOKEN_IDENTIFIER;
-}
+static constexpr std::array<std::pair<std::string_view, TokenType>, 16> keywords{{{"and"sv, TOKEN_AND},
+                                                                                  {"class"sv, TOKEN_CLASS},
+                                                                                  {"else"sv, TOKEN_ELSE},
+                                                                                  {"false"sv, TOKEN_FALSE},
+                                                                                  {"for"sv, TOKEN_FOR},
+                                                                                  {"fun"sv, TOKEN_FUN},
+                                                                                  {"if"sv, TOKEN_IF},
+                                                                                  {"nil"sv, TOKEN_NIL},
+                                                                                  {"or"sv, TOKEN_OR},
+                                                                                  {"print"sv, TOKEN_PRINT},
+                                                                                  {"return"sv, TOKEN_RETURN},
+                                                                                  {"super"sv, TOKEN_SUPER},
+                                                                                  {"this"sv, TOKEN_THIS},
+                                                                                  {"true"sv, TOKEN_TRUE},
+                                                                                  {"var"sv, TOKEN_VAR},
+                                                                                  {"while"sv, TOKEN_WHILE}}};
+static constexpr auto keywords_map = Map<std::string_view, TokenType, keywords.size()>{{keywords}};
 
-static TokenType identifierType()
+TokenType identifierType()
 {
-    switch (scanner.start[0])
-    {
-        case 'a': return checkKeyword(1, 2, "nd", TOKEN_AND);
-        case 'c': return checkKeyword(1, 4, "lass", TOKEN_CLASS);
-        case 'e': return checkKeyword(1, 3, "lse", TOKEN_ELSE);
-        case 'f':
-            if (scanner.current - scanner.start > 1)
-            {
-                switch (scanner.start[1])
-                {
-                    case 'a': return checkKeyword(2, 3, "lse", TOKEN_FALSE);
-                    case 'o': return checkKeyword(2, 1, "r", TOKEN_FOR);
-                    case 'u': return checkKeyword(2, 1, "n", TOKEN_FUN);
-                }
-            }
-            break;
-        case 'i': return checkKeyword(1, 1, "f", TOKEN_IF);
-        case 'n': return checkKeyword(1, 2, "il", TOKEN_NIL);
-        case 'o': return checkKeyword(1, 1, "r", TOKEN_OR);
-        case 'p': return checkKeyword(1, 4, "rint", TOKEN_PRINT);
-        case 'r': return checkKeyword(1, 5, "eturn", TOKEN_RETURN);
-        case 's': return checkKeyword(1, 4, "uper", TOKEN_SUPER);
-        case 't':
-            if (scanner.current - scanner.start > 1)
-            {
-                switch (scanner.start[1])
-                {
-                    case 'h': return checkKeyword(2, 2, "is", TOKEN_THIS);
-                    case 'r': return checkKeyword(2, 2, "ue", TOKEN_TRUE);
-                }
-            }
-            break;
-        case 'v': return checkKeyword(1, 2, "ar", TOKEN_VAR);
-        case 'w': return checkKeyword(1, 4, "hile", TOKEN_WHILE);
-    }
-
-    return TOKEN_IDENTIFIER;
+    return keywords_map.at(std::string_view(scanner.start, scanner.current));
 }
 
 static Token identifier()

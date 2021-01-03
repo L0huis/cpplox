@@ -49,11 +49,13 @@ struct Local
     int   depth;
     bool  isCaptured;
 };
+
 struct Upvalue
 {
     uint8_t index;
     bool    isLocal;
 };
+
 enum FunctionType
 {
     TYPE_FUNCTION,

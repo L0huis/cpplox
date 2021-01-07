@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <map>
 
+#include "constexpr_map.h"
 #include "common.h"
 #include "scanner.h"
 
@@ -122,22 +123,6 @@ static void skipWhitespace()
 
 using namespace std::literals::string_view_literals;
 
-template<typename Key, typename Value, std::size_t Size>
-struct Map
-{
-    std::array<std::pair<Key, Value>, Size> data;
-
-    [[nodiscard]] constexpr Value at(const Key& key) const
-    {
-        const auto itr = std::find_if(begin(data), end(data), [&key](const auto& v) { return v.first == key; });
-        if (itr != end(data))
-        {
-            return itr->second;
-        }
-        return TOKEN_IDENTIFIER;
-    }
-};
-
 static constexpr std::array<std::pair<std::string_view, TokenType>, 16> keywords{{{"and"sv, TOKEN_AND},
                                                                                   {"class"sv, TOKEN_CLASS},
                                                                                   {"else"sv, TOKEN_ELSE},
@@ -154,11 +139,12 @@ static constexpr std::array<std::pair<std::string_view, TokenType>, 16> keywords
                                                                                   {"true"sv, TOKEN_TRUE},
                                                                                   {"var"sv, TOKEN_VAR},
                                                                                   {"while"sv, TOKEN_WHILE}}};
-static constexpr auto keywords_map = Map<std::string_view, TokenType, keywords.size()>{{keywords}};
+
+static constexpr auto keywords_map = constexpr_map<std::string_view, TokenType, keywords.size()>{{keywords}};
 
 TokenType identifierType()
 {
-    return keywords_map.at(std::string_view(scanner.start, scanner.current));
+    return keywords_map.at_or_default(std::string_view(scanner.start, scanner.current), TOKEN_IDENTIFIER);
 }
 
 static Token identifier()

@@ -1,62 +1,90 @@
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
-writeChunk: 000002009B092A18
+-- gc begin
+-- gc end
+   collected 0 bytes (from 5 to 5) next at 10
+-- gc begin
+-- gc end
+   collected 0 bytes (from 45 to 45) next at 90
+000002B892FC54C0 allocate 40 for 6
+-- gc begin
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+-- gc end
+   collected 0 bytes (from 173 to 173) next at 346
+-- gc begin
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+-- gc end
+   collected 0 bytes (from 179 to 179) next at 358
+-- gc begin
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+-- gc end
+   collected 0 bytes (from 219 to 219) next at 438
+000002B892FD3470 allocate 40 for 6
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 243 to 243) next at 486
+000002B892FCAD80 allocate 24 for 5
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 371 to 371) next at 742
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 499 to 499) next at 998
+000002B892FD3920 allocate 128 for 3
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3920 mark <script>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3920 blacken <script>
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 503 to 503) next at 1006
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3920 mark <script>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3920 blacken <script>
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 543 to 543) next at 1086
+000002B892FD3400 allocate 40 for 6
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3920 mark <script>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3920 blacken <script>
+000002B892FD3400 mark fib
+000002B892FD3400 blacken fib
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 671 to 671) next at 1342
+000002B892FD39E0 allocate 128 for 3
 == fib ==
 0000    3 OP_CONSTANT         0 '0'
 0002    4 OP_CONSTANT         1 '1'
@@ -92,28 +120,58 @@ writeChunk: 000002009B092A18
 0056    | OP_RETURN
 0057   14 OP_NIL
 0058    | OP_RETURN
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B093B18
-writeChunk: 000002009B093B18
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3920 mark <script>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3920 blacken <script>
+000002B892FD3400 mark fib
+000002B892FD39E0 mark <fn fib>
+000002B892FD39E0 blacken <fn fib>
+000002B892FD3400 blacken fib
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 675 to 675) next at 1350
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3920 mark <script>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3920 blacken <script>
+000002B892FD3400 mark fib
+000002B892FD39E0 mark <fn fib>
+000002B892FD39E0 blacken <fn fib>
+000002B892FD3400 blacken fib
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 715 to 715) next at 1430
+000002B892FD3240 allocate 40 for 6
+-- gc begin
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3920 mark <script>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3920 blacken <script>
+000002B892FD3400 mark fib
+000002B892FD39E0 mark <fn fib>
+000002B892FD3240 mark foo
+000002B892FD3240 blacken foo
+000002B892FD39E0 blacken <fn fib>
+000002B892FD3400 blacken fib
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+-- gc end
+   collected 0 bytes (from 843 to 843) next at 1686
+000002B892FD4AB0 allocate 128 for 3
 == foo ==
 0000   19 OP_NIL
 0001    | OP_RETURN
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
-writeChunk: 000002009B092148
 == <script> ==
 0000   14 OP_CLOSURE          1 <fn fib>
 0002    | OP_DEFINE_GLOBAL    0 'fib'
@@ -122,6 +180,608 @@ writeChunk: 000002009B092148
 0008   21 OP_GET_GLOBAL       4 'fib'
 0010    | OP_CONSTANT         5 '10'
 0012    | OP_CALL             1
-0014    | OP_POP
-0015    | OP_NIL
+0014    | OP_PRINT
+0015   22 OP_NIL
 0016    | OP_RETURN
+-- gc begin
+000002B892FD3920 mark <script>
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+000002B892FD3920 blacken <script>
+000002B892FD3400 mark fib
+000002B892FD39E0 mark <fn fib>
+000002B892FD3240 mark foo
+000002B892FD4AB0 mark <fn foo>
+000002B892FD4AB0 blacken <fn foo>
+000002B892FD3240 blacken foo
+000002B892FD39E0 blacken <fn fib>
+000002B892FD3400 blacken fib
+-- gc end
+   collected 0 bytes (from 883 to 883) next at 1766
+000002B892FD32B0 allocate 40 for 2
+          [ <script> ]
+0000   14 OP_CLOSURE          1 <fn fib>
+-- gc begin
+000002B892FD32B0 mark <script>
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+000002B892FD32B0 blacken <script>
+000002B892FD3920 mark <script>
+000002B892FD3920 blacken <script>
+000002B892FD3400 mark fib
+000002B892FD39E0 mark <fn fib>
+000002B892FD3240 mark foo
+000002B892FD4AB0 mark <fn foo>
+000002B892FD4AB0 blacken <fn foo>
+000002B892FD3240 blacken foo
+000002B892FD39E0 blacken <fn fib>
+000002B892FD3400 blacken fib
+-- gc end
+   collected 0 bytes (from 923 to 923) next at 1846
+000002B892FD3550 allocate 40 for 2
+          [ <script> ][ <fn fib> ]
+0002    | OP_DEFINE_GLOBAL    0 'fib'
+          [ <script> ]
+0004   19 OP_CLOSURE          3 <fn foo>
+-- gc begin
+000002B892FD32B0 mark <script>
+000002B892FD3470 mark clock
+000002B892FCAD80 mark <native fn>
+000002B892FD3400 mark fib
+000002B892FD3550 mark <fn fib>
+000002B892FC54C0 mark init
+000002B892FC54C0 blacken init
+000002B892FD3550 blacken <fn fib>
+000002B892FD39E0 mark <fn fib>
+000002B892FD39E0 blacken <fn fib>
+000002B892FD3400 blacken fib
+000002B892FCAD80 blacken <native fn>
+000002B892FD3470 blacken clock
+000002B892FD32B0 blacken <script>
+000002B892FD3920 mark <script>
+000002B892FD3920 blacken <script>
+000002B892FD3240 mark foo
+000002B892FD4AB0 mark <fn foo>
+000002B892FD4AB0 blacken <fn foo>
+000002B892FD3240 blacken foo
+-- gc end
+   collected 0 bytes (from 963 to 963) next at 1926
+000002B892FD3320 allocate 40 for 2
+          [ <script> ][ <fn foo> ]
+0006    | OP_DEFINE_GLOBAL    2 'foo'
+          [ <script> ]
+0008   21 OP_GET_GLOBAL       4 'fib'
+          [ <script> ][ <fn fib> ]
+0010    | OP_CONSTANT         5 '10'
+          [ <script> ][ <fn fib> ][ 10 ]
+0012    | OP_CALL             1
+          [ <script> ][ <fn fib> ][ 10 ]
+0000    3 OP_CONSTANT         0 '0'
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ]
+0002    4 OP_CONSTANT         1 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ]
+0004    5 OP_CONSTANT         2 '0'
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ]
+0006    7 OP_CONSTANT         3 '0'
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ 0 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ 0 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ 0 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ 0 ][ 1 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 0 ][ 0 ][ 1 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 1 ][ 0 ][ 1 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 1 ][ 0 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 0 ][ 1 ][ 1 ][ 0 ][ 1 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ][ 1 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ][ 1 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ][ 1 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ][ 0 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ][ 0 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 0 ][ 1 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ 1 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ 1 ][ 1 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 1 ][ 1 ][ 2 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 2 ][ 1 ][ 2 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 2 ][ 1 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 2 ][ 1 ][ 1 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 2 ][ 1 ][ 1 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 2 ][ 1 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 1 ][ 2 ][ 1 ][ 2 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 1 ][ 2 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 1 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 1 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 1 ][ 1 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 1 ][ 1 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 1 ][ 2 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ 2 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ 2 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ 2 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ 1 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ 1 ][ 2 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 2 ][ 2 ][ 3 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 3 ][ 2 ][ 3 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 3 ][ 2 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 1 ][ 2 ][ 3 ][ 2 ][ 2 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 2 ][ 3 ][ 2 ][ 2 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 2 ][ 3 ][ 2 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 2 ][ 3 ][ 2 ][ 3 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 2 ][ 3 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 2 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 2 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 2 ][ 2 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 2 ][ 2 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 2 ][ 3 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ 3 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ 3 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ 3 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ 2 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ 2 ][ 3 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 3 ][ 3 ][ 5 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 5 ][ 3 ][ 5 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 5 ][ 3 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 2 ][ 3 ][ 5 ][ 3 ][ 3 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 3 ][ 5 ][ 3 ][ 3 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 3 ][ 5 ][ 3 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 3 ][ 5 ][ 3 ][ 5 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 3 ][ 5 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 3 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 3 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 3 ][ 3 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 3 ][ 3 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 3 ][ 4 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ 4 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ 4 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ 4 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ 3 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ 3 ][ 5 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 5 ][ 4 ][ 8 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 8 ][ 4 ][ 8 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 8 ][ 4 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 3 ][ 5 ][ 8 ][ 4 ][ 5 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 5 ][ 8 ][ 4 ][ 5 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 5 ][ 8 ][ 4 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 5 ][ 8 ][ 4 ][ 8 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 4 ][ 8 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 4 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 4 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 4 ][ 4 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 4 ][ 4 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 4 ][ 5 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ 5 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ 5 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ 5 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ 5 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ 5 ][ 8 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 8 ][ 5 ][ 13 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 13 ][ 5 ][ 13 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 13 ][ 5 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 5 ][ 8 ][ 13 ][ 5 ][ 8 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 8 ][ 13 ][ 5 ][ 8 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 8 ][ 13 ][ 5 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 8 ][ 13 ][ 5 ][ 13 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 5 ][ 13 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 5 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 5 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 5 ][ 5 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 5 ][ 5 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 5 ][ 6 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ 6 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ 6 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ 6 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ 8 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ 8 ][ 13 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 13 ][ 6 ][ 21 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 21 ][ 6 ][ 21 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 21 ][ 6 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 8 ][ 13 ][ 21 ][ 6 ][ 13 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 13 ][ 21 ][ 6 ][ 13 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 13 ][ 21 ][ 6 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 13 ][ 21 ][ 6 ][ 21 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 6 ][ 21 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 6 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 6 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 6 ][ 6 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 6 ][ 6 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 6 ][ 7 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ 7 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ 7 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ 7 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ 13 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ 13 ][ 21 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 21 ][ 7 ][ 34 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 34 ][ 7 ][ 34 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 34 ][ 7 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 13 ][ 21 ][ 34 ][ 7 ][ 21 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 21 ][ 34 ][ 7 ][ 21 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 21 ][ 34 ][ 7 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 21 ][ 34 ][ 7 ][ 34 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 7 ][ 34 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 7 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 7 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 7 ][ 7 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 7 ][ 7 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 7 ][ 8 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ 8 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ 8 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ 8 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ 21 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ 21 ][ 34 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 34 ][ 8 ][ 55 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 55 ][ 8 ][ 55 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 55 ][ 8 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 21 ][ 34 ][ 55 ][ 8 ][ 34 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 34 ][ 55 ][ 8 ][ 34 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 34 ][ 55 ][ 8 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 34 ][ 55 ][ 8 ][ 55 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 8 ][ 55 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 8 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 8 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 8 ][ 8 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 8 ][ 8 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 8 ][ 9 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ 9 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ 9 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ 9 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ true ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ true ]
+0016    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ]
+0017    | OP_JUMP            17 -> 31
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ]
+0031    9 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ 34 ]
+0033    | OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ 34 ][ 55 ]
+0035    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 55 ][ 9 ][ 89 ]
+0036    | OP_SET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 89 ][ 9 ][ 89 ]
+0038    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 89 ][ 9 ]
+0039   10 OP_GET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 34 ][ 55 ][ 89 ][ 9 ][ 55 ]
+0041    | OP_SET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 55 ][ 89 ][ 9 ][ 55 ]
+0043    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 55 ][ 89 ][ 9 ]
+0044   11 OP_GET_LOCAL        4
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 55 ][ 89 ][ 9 ][ 89 ]
+0046    | OP_SET_LOCAL        3
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 9 ][ 89 ]
+0048    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 9 ]
+0049   12 OP_LOOP            49 -> 20
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 9 ]
+0020    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 9 ][ 9 ]
+0022    | OP_CONSTANT         4 '1'
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 9 ][ 9 ][ 1 ]
+0024    | OP_ADD
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 9 ][ 10 ]
+0025    | OP_SET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ][ 10 ]
+0027    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ]
+0028    | OP_LOOP            28 -> 8
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ]
+0008    | OP_GET_LOCAL        5
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ][ 10 ]
+0010    | OP_GET_LOCAL        1
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ][ 10 ][ 10 ]
+0012    | OP_LESS
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ][ false ]
+0013    | OP_JUMP_IF_FALSE   13 -> 52
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ][ false ]
+0052    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 10 ]
+0053    | OP_POP
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ]
+0054   13 OP_GET_LOCAL        2
+          [ <script> ][ <fn fib> ][ 10 ][ 55 ][ 89 ][ 89 ][ 55 ]
+0056    | OP_RETURN
+          [ <script> ][ 55 ]
+0014    | OP_PRINT
+55
+          [ <script> ]
+0015   22 OP_NIL
+          [ <script> ][ nil ]
+0016    | OP_RETURN
+000002B892FD3320 free type 2
+000002B892FD3550 free type 2
+000002B892FD32B0 free type 2
+000002B892FD4AB0 free type 3
+000002B892FD3240 free type 6
+000002B892FD39E0 free type 3
+000002B892FD3400 free type 6
+000002B892FD3920 free type 3
+000002B892FCAD80 free type 5
+000002B892FD3470 free type 6
+000002B892FC54C0 free type 6
